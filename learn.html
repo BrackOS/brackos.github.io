@@ -1,38 +1,103 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Learn how Brack OS works and why we're building it."> <title>Brack OS — Learn</title> <link rel="stylesheet" href="/assets/styles.css"> </head> <body> <nav> <div id="navbar" class="container"></div> </nav> <script> fetch("/nav.html") .then(response => response.text()) .then(data => { document.getElementById("navbar").innerHTML = data; }) .catch(() => {}); </script> <main> <section class="page-hero"> <div class="container"> <div class="eyebrow">Learn about Brack OS</div>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Learn how operating systems work and what Brack OS is building."> <title>Brack OS — Learn</title> <link rel="stylesheet" href="/assets/styles.css"> </head> <body> <nav> <div id="navbar" class="container"></div> </nav> <script> fetch("/nav.html") .then(response => response.text()) .then(data => { document.getElementById("navbar").innerHTML = data; }) .catch(() => {}); </script> <main> <section class="page-hero"> <div class="container">
+  <div class="eyebrow">Learn about Brack OS</div>
+
   <h1>How does an OS actually work?</h1>
 
   <p>
-    Brack OS is being built from the ground up. Here's a simple look at
-    what we're building and why.
+    Your computer does a lot more than open apps and display windows.
+    Here's a look at what happens underneath it all.
   </p>
+
 </div>
 
 </section> <section class="page"> <div class="container content">
   <div class="content-section">
+
     <h2>So... what is an operating system?</h2>
 
     <p>
-      An operating system is the software that sits between your computer's
-      hardware and the programs you use every day.
+      An operating system is the software that manages a computer and
+      provides a way for other software to use its hardware.
     </p>
 
     <p>
-      Windows, macOS, and Linux are all operating systems. They handle things
-      like memory, processors, storage, devices, and running applications.
+      Windows, macOS, and Linux are all operating systems. They provide
+      things like file systems, networking, device support, memory
+      management, and ways for programs to run.
     </p>
 
     <p>
-      Brack OS is our attempt to build one ourselves.
+      When you open a browser, save a file, connect a USB device, or
+      connect to Wi-Fi, your operating system is doing a lot of work
+      behind the scenes.
     </p>
+
+    <p>
+      Brack OS is our attempt to build those foundations ourselves.
+    </p>
+
   </div>
 
   <div class="content-section">
+
+    <h2>What happens when you turn on a computer?</h2>
+
+    <p>
+      Starting a computer is more complicated than it looks. Before you
+      see a desktop, several layers of software have already done their job.
+    </p>
+
+    <div class="info-grid">
+
+      <div class="info-card">
+        <h3>1. Firmware</h3>
+        <p>
+          When the computer starts, firmware such as UEFI or older BIOS
+          initializes the hardware and begins the boot process.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>2. Bootloader</h3>
+        <p>
+          The bootloader locates the operating system and loads the kernel
+          into memory.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>3. Kernel</h3>
+        <p>
+          The kernel takes control and begins managing the processor,
+          memory, hardware, and other core parts of the system.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>4. Userspace</h3>
+        <p>
+          Programs and services can then run on top of the kernel,
+          eventually providing the environment users interact with.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="content-section">
+
     <h2>What's a kernel?</h2>
 
     <p>
-      The kernel is one of the most important parts of an operating system.
-      It is responsible for communicating with the hardware and providing
-      the foundations that the rest of the system can use.
+      The kernel is the core of an operating system. It operates at a
+      privileged level and provides the foundation that the rest of the
+      system relies on.
+    </p>
+
+    <p>
+      A kernel has to deal with hardware and resources that applications
+      normally cannot access directly.
     </p>
 
     <div class="info-grid">
@@ -40,71 +105,137 @@
       <div class="info-card">
         <h3>CPU</h3>
         <p>
-          The kernel manages how the system uses the processor and handles
-          the code that needs to run.
+          The kernel manages processor time and provides the foundations
+          for running multiple processes.
         </p>
       </div>
 
       <div class="info-card">
         <h3>Memory</h3>
         <p>
-          The kernel keeps track of memory and determines how it is used
-          by different parts of the system.
+          The kernel keeps track of memory and controls how it is allocated
+          and accessed.
         </p>
       </div>
 
       <div class="info-card">
-        <h3>Hardware</h3>
+        <h3>Devices</h3>
         <p>
           Drivers allow the operating system to communicate with hardware
-          such as storage devices, keyboards, displays, and network hardware.
+          such as keyboards, storage devices, displays, and network adapters.
         </p>
       </div>
 
       <div class="info-card">
         <h3>Processes</h3>
         <p>
-          The kernel provides the foundation for running programs and
-          managing the resources they need.
+          The kernel provides the mechanisms needed to start programs,
+          manage them, and control the resources they use.
         </p>
       </div>
 
     </div>
+
   </div>
 
   <div class="content-section">
+
+    <h2>What's a driver?</h2>
+
+    <p>
+      A driver is software that allows an operating system to communicate
+      with a particular piece of hardware.
+    </p>
+
+    <p>
+      Different hardware works in different ways. A network adapter,
+      graphics card, keyboard, and storage controller all have different
+      interfaces that software needs to understand.
+    </p>
+
+    <p>
+      This is one reason building an operating system takes so much work.
+      Getting the kernel to boot is only the beginning. The system also
+      needs drivers before it can interact with a wide range of hardware.
+    </p>
+
+    <div class="notice">
+
+      <strong>Brack OS right now</strong>
+
+      <p>
+        Hardware support is still being developed. Networking in particular
+        is not currently functional, as Ethernet driver development has only
+        recently begun.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="content-section">
+
+    <h2>What is userspace?</h2>
+
+    <p>
+      Userspace is the part of the operating system where normal programs
+      run. Unlike the kernel, userspace programs generally don't have
+      unrestricted access to the hardware.
+    </p>
+
+    <p>
+      A command-line shell, text editor, system utilities, and eventually
+      graphical applications can all live in userspace.
+    </p>
+
+    <p>
+      Brack OS is currently focused heavily on the kernel. As the project
+      progresses, more functionality will move into userspace.
+    </p>
+
+  </div>
+
+  <div class="content-section">
+
     <h2>Why build a kernel from scratch?</h2>
 
     <p>
-      There are already plenty of excellent operating systems. So why make
-      another one?
+      There are already plenty of excellent operating systems. So why
+      make another one?
     </p>
 
     <p>
-      Because building one is a great way to understand how computers
-      actually work.
+      Because building an operating system is an excellent way to
+      understand how computers actually work.
     </p>
 
     <p>
-      Instead of starting with an existing operating system and changing
-      it, Brack OS lets the team work on the foundations themselves.
-      Every part of the system is an opportunity to learn, experiment,
-      and solve problems.
+      Instead of starting with an existing operating system and modifying
+      it, Brack OS allows the team to work directly on the foundations.
+      Every part of the system presents another problem to solve and
+      another opportunity to learn.
     </p>
+
+    <p>
+      It also means that the team gets to decide how the system develops
+      rather than simply inheriting the design decisions of another OS.
+    </p>
+
   </div>
 
   <div class="content-section">
+
     <h2>What are architectures?</h2>
 
     <p>
-      You may have noticed that Brack OS has pages for x64, x86, ARM64,
-      ARM32, and even 16-bit systems.
+      A processor architecture defines the instruction set and other
+      fundamental rules that software uses to communicate with a CPU.
     </p>
 
     <p>
-      These are different processor architectures. They define, among other
-      things, the instructions a processor understands and how software
-      interacts with it.
+      Operating systems are closely tied to the architecture they run on.
+      Code written for one architecture cannot necessarily run directly
+      on another.
     </p>
 
     <div class="info-grid">
@@ -112,50 +243,56 @@
       <div class="info-card">
         <h3>x64</h3>
         <p>
-          The current primary development target for Brack OS.
+          The current primary development target for Brack OS and the
+          main architecture being worked on right now.
         </p>
       </div>
 
       <div class="info-card">
         <h3>x86</h3>
         <p>
-          The older 32-bit version of the x86 processor family.
+          The older 32-bit member of the x86 processor family. Planned
+          as a future Brack OS target.
         </p>
       </div>
 
       <div class="info-card">
         <h3>ARM64</h3>
         <p>
-          A modern 64-bit ARM architecture used by many newer devices.
+          A modern 64-bit ARM architecture used by many newer computers,
+          phones, tablets, and embedded systems.
         </p>
       </div>
 
       <div class="info-card">
         <h3>ARM32</h3>
         <p>
-          The older 32-bit ARM architecture.
+          A 32-bit ARM architecture used by many older and smaller systems.
         </p>
       </div>
 
       <div class="info-card">
         <h3>16-bit</h3>
         <p>
-          An experimental target intended primarily for exploration and
-          learning.
+          An experimental target intended primarily for exploration,
+          experimentation, and learning.
         </p>
       </div>
 
       <div class="info-card">
         <h3>RISC-V</h3>
         <p>
-          A possible future architecture target for Brack OS.
+          An open instruction-set architecture that may be considered
+          for Brack OS in the future.
         </p>
       </div>
 
     </div>
+
   </div>
 
   <div class="content-section">
+
     <h2>Why isn't everything working yet?</h2>
 
     <p>
@@ -163,36 +300,52 @@
     </p>
 
     <p>
-      Getting a kernel to start is only the beginning. Drivers, storage,
-      networking, memory management, userspace programs, and eventually
-      graphical interfaces all have to be built and tested.
+      Getting a kernel to start is only one of the first steps. The system
+      still needs reliable memory management, hardware drivers, storage,
+      networking, userspace programs, and eventually a graphical environment.
     </p>
 
     <p>
-      Right now, Brack OS is still focused on its foundations. Some features
-      and commands are not functional yet, and that's expected at this stage
+      Brack OS is still an experimental project. Some commands and features
+      are incomplete or non-functional, and that is expected at this stage
       of development.
     </p>
+
+    <p>
+      The goal is to build the foundations correctly rather than rush
+      toward a finished-looking desktop.
+    </p>
+
   </div>
 
   <div class="content-section">
-    <h2>Where do we go from here?</h2>
+
+    <h2>Where does Brack OS go from here?</h2>
 
     <p>
-      The long-term goal is to turn the foundations of Brack OS into a
-      complete operating system that can run useful software across multiple
-      architectures.
+      The immediate focus is the x64 kernel. From there, development can
+      expand into additional hardware support, userspace, and eventually
+      a graphical environment.
     </p>
 
     <p>
-      We're starting with the kernel, then moving toward drivers, userspace,
-      and eventually a graphical environment.
+      Other processor architectures are also part of the long-term plan,
+      although they will come after the current foundations are further
+      developed.
     </p>
 
     <div class="link-row">
-      <a class="button primary" href="/roadmap">View the roadmap →</a>
-      <a class="button" href="/docs">Explore the docs →</a>
+
+      <a class="button primary" href="/roadmap">
+        View the roadmap →
+      </a>
+
+      <a class="button" href="/docs">
+        Explore the docs →
+      </a>
+
     </div>
+
   </div>
 
 </div>
