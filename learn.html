@@ -1,0 +1,200 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Learn how Brack OS works and why we're building it."> <title>Brack OS — Learn</title> <link rel="stylesheet" href="/assets/styles.css"> </head> <body> <nav> <div id="navbar" class="container"></div> </nav> <script> fetch("/nav.html") .then(response => response.text()) .then(data => { document.getElementById("navbar").innerHTML = data; }) .catch(() => {}); </script> <main> <section class="page-hero"> <div class="container"> <div class="eyebrow">Learn about Brack OS</div>
+  <h1>How does an OS actually work?</h1>
+
+  <p>
+    Brack OS is being built from the ground up. Here's a simple look at
+    what we're building and why.
+  </p>
+</div>
+
+</section> <section class="page"> <div class="container content">
+  <div class="content-section">
+    <h2>So... what is an operating system?</h2>
+
+    <p>
+      An operating system is the software that sits between your computer's
+      hardware and the programs you use every day.
+    </p>
+
+    <p>
+      Windows, macOS, and Linux are all operating systems. They handle things
+      like memory, processors, storage, devices, and running applications.
+    </p>
+
+    <p>
+      Brack OS is our attempt to build one ourselves.
+    </p>
+  </div>
+
+  <div class="content-section">
+    <h2>What's a kernel?</h2>
+
+    <p>
+      The kernel is one of the most important parts of an operating system.
+      It is responsible for communicating with the hardware and providing
+      the foundations that the rest of the system can use.
+    </p>
+
+    <div class="info-grid">
+
+      <div class="info-card">
+        <h3>CPU</h3>
+        <p>
+          The kernel manages how the system uses the processor and handles
+          the code that needs to run.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Memory</h3>
+        <p>
+          The kernel keeps track of memory and determines how it is used
+          by different parts of the system.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Hardware</h3>
+        <p>
+          Drivers allow the operating system to communicate with hardware
+          such as storage devices, keyboards, displays, and network hardware.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Processes</h3>
+        <p>
+          The kernel provides the foundation for running programs and
+          managing the resources they need.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Why build a kernel from scratch?</h2>
+
+    <p>
+      There are already plenty of excellent operating systems. So why make
+      another one?
+    </p>
+
+    <p>
+      Because building one is a great way to understand how computers
+      actually work.
+    </p>
+
+    <p>
+      Instead of starting with an existing operating system and changing
+      it, Brack OS lets the team work on the foundations themselves.
+      Every part of the system is an opportunity to learn, experiment,
+      and solve problems.
+    </p>
+  </div>
+
+  <div class="content-section">
+    <h2>What are architectures?</h2>
+
+    <p>
+      You may have noticed that Brack OS has pages for x64, x86, ARM64,
+      ARM32, and even 16-bit systems.
+    </p>
+
+    <p>
+      These are different processor architectures. They define, among other
+      things, the instructions a processor understands and how software
+      interacts with it.
+    </p>
+
+    <div class="info-grid">
+
+      <div class="info-card">
+        <h3>x64</h3>
+        <p>
+          The current primary development target for Brack OS.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>x86</h3>
+        <p>
+          The older 32-bit version of the x86 processor family.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>ARM64</h3>
+        <p>
+          A modern 64-bit ARM architecture used by many newer devices.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>ARM32</h3>
+        <p>
+          The older 32-bit ARM architecture.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>16-bit</h3>
+        <p>
+          An experimental target intended primarily for exploration and
+          learning.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>RISC-V</h3>
+        <p>
+          A possible future architecture target for Brack OS.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Why isn't everything working yet?</h2>
+
+    <p>
+      Because operating systems are complicated.
+    </p>
+
+    <p>
+      Getting a kernel to start is only the beginning. Drivers, storage,
+      networking, memory management, userspace programs, and eventually
+      graphical interfaces all have to be built and tested.
+    </p>
+
+    <p>
+      Right now, Brack OS is still focused on its foundations. Some features
+      and commands are not functional yet, and that's expected at this stage
+      of development.
+    </p>
+  </div>
+
+  <div class="content-section">
+    <h2>Where do we go from here?</h2>
+
+    <p>
+      The long-term goal is to turn the foundations of Brack OS into a
+      complete operating system that can run useful software across multiple
+      architectures.
+    </p>
+
+    <p>
+      We're starting with the kernel, then moving toward drivers, userspace,
+      and eventually a graphical environment.
+    </p>
+
+    <div class="link-row">
+      <a class="button primary" href="/roadmap">View the roadmap →</a>
+      <a class="button" href="/docs">Explore the docs →</a>
+    </div>
+  </div>
+
+</div>
+
+</section> </main> <footer> <div class="container"> Brack OS · Open source · Under development </div> </footer> </body> </html>
