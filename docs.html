@@ -1,232 +1,249 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Documentation and command reference for Brack OS."> <title>Brack OS Docs</title> <style> :root { --background: #07111f; --background-light: #0b1728; --card: rgba(16, 31, 51, 0.82); --card-hover: rgba(20, 41, 66, 0.95); --border: rgba(255, 255, 255, 0.09); --text: #f1f6fc; --muted: #9eafc3; --blue: #4da3ff; --cyan: #55d6e8; --green: #55d68a; --yellow: #ffd166; --red: #ff6b6b; --max-width: 1000px; } * { box-sizing: border-box; } body { margin: 0; color: var(--text); background: radial-gradient(circle at 15% 10%, rgba(77, 163, 255, 0.14), transparent 32rem), radial-gradient(circle at 85% 20%, rgba(85, 214, 232, 0.08), transparent 30rem), var(--background); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; } a { color: inherit; text-decoration: none; } .container { width: min(calc(100% - 32px), var(--max-width)); margin: 0 auto; } nav { position: sticky; top: 0; z-index: 10; background: rgba(7, 17, 31, 0.88); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); } .nav-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; } .logo { font-size: 1.15rem; font-weight: 750; letter-spacing: -0.02em; } .logo span { color: var(--blue); } .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 0.95rem; } .nav-links a:hover { color: var(--text); } main { padding: 90px 0; } .intro { max-width: 720px; margin-bottom: 45px; } .eyebrow { margin-bottom: 14px; color: var(--cyan); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; } h1 { margin: 0 0 15px; font-size: clamp(2.8rem, 7vw, 4.8rem); line-height: 1; letter-spacing: -0.055em; } .intro p { margin: 0; color: var(--muted); font-size: 1.1rem; } .notice { margin-bottom: 35px; padding: 20px 22px; border: 1px solid rgba(255, 209, 102, 0.2); border-radius: 14px; background: rgba(255, 209, 102, 0.06); } .notice strong { color: var(--yellow); } .section { margin-top: 55px; } .section h2 { margin: 0 0 10px; font-size: 2rem; letter-spacing: -0.03em; } .section > p { margin: 0 0 25px; color: var(--muted); } .drive-card { margin-bottom: 35px; padding: 25px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); } .drive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; } .drive { padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.025); } .drive strong { display: block; margin-bottom: 4px; color: var(--text); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; } .drive span { color: var(--muted); font-size: 0.9rem; } .command { margin-bottom: 14px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); transition: background 0.2s ease; } .command:hover { background: var(--card-hover); } .command-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 8px; } .command-name { color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 1.1rem; font-weight: 700; } .command p { margin: 0; color: var(--muted); } .status { flex-shrink: 0; padding: 4px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; } .working { color: var(--green); background: rgba(85, 214, 138, 0.1); } .experimental { color: var(--yellow); background: rgba(255, 209, 102, 0.1); } .unavailable { color: var(--red); background: rgba(255, 107, 107, 0.1); } code { padding: 3px 7px; border-radius: 6px; background: rgba(255, 255, 255, 0.07); color: var(--cyan); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; } footer { padding: 40px 0; color: var(--muted); font-size: 0.85rem; text-align: center; } @media (max-width: 700px) { .nav-inner { padding: 12px 0; flex-direction: column; gap: 10px; } .nav-links { flex-wrap: wrap; justify-content: center; gap: 8px 14px; font-size: 0.85rem; } main { padding: 65px 0; } .drive-grid { grid-template-columns: 1fr; } .command-header { align-items: flex-start; flex-direction: column; } } </style> </head> <body> <nav> <div class="container nav-inner">
-<a class="logo" href="/">Brack<span>OS</span></a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentation and command reference for Brack OS.">
+  <title>Brack OS — Docs</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
 
-<div id="navbar"></div>
-
+<nav>
+  <div id="navbar" class="container"></div>
+</nav>
 <script>
   fetch("/nav.html")
     .then(response => response.text())
     .then(data => {
       document.getElementById("navbar").innerHTML = data;
-    });
+    })
+    .catch(() => {});
 </script>
 
-</div> </nav> <main> <div class="container">
-<div class="intro">
-  <div class="eyebrow">Documentation</div>
+<main>
+  <div class="container">
+    <div class="intro">
+      <div class="eyebrow">Documentation</div>
 
-  <h1>Brack OS commands.</h1>
+      <h1>Brack OS commands.</h1>
 
-  <p>
-    A reference for the commands currently available in the Brack OS
-    command-line interface.
-  </p>
-</div>
-
-<div class="notice">
-  <strong>Brack OS is still under development.</strong>
-  Some commands are experimental or currently unavailable.
-  Networking commands in particular will not work yet because
-  Ethernet driver development has only recently begun.
-</div>
-
-<div class="drive-card">
-  <h2>One thing to know first</h2>
-
-  <p>
-    Brack OS currently uses <code>A:</code> as its main drive.
-    If you've used Windows before, you may recognize that letter
-    from floppy disks.
-  </p>
-
-  <p>
-    Linux and macOS normally use <code>/</code> for the root of
-    the filesystem, while Windows normally uses <code>C:</code>.
-    Brack OS currently uses <code>A:</code>.
-  </p>
-
-  <div class="drive-grid">
-    <div class="drive">
-      <strong>Brack OS</strong>
-      <span>A:</span>
+      <p>
+        A reference for the commands currently available in the Brack OS
+        command-line interface.
+      </p>
     </div>
 
-    <div class="drive">
-      <strong>Windows</strong>
-      <span>C:</span>
+    <div class="notice">
+      <strong>Brack OS is still under development.</strong>
+      Some commands are experimental or currently unavailable.
+      Networking commands in particular will not work yet because
+      Ethernet driver development has only recently begun.
     </div>
 
-    <div class="drive">
-      <strong>Linux / macOS</strong>
-      <span>/</span>
+    <div class="drive-card">
+      <h2>One thing to know first</h2>
+
+      <p>
+        Brack OS currently uses <code>A:</code> as its main drive.
+        If you've used Windows before, you may recognize that letter
+        from floppy disks.
+      </p>
+
+      <p>
+        Linux and macOS normally use <code>/</code> for the root of
+        the filesystem, while Windows normally uses <code>C:</code>.
+        Brack OS currently uses <code>A:</code>.
+      </p>
+
+      <div class="drive-grid">
+        <div class="drive">
+          <strong>Brack OS</strong>
+          <span>A:</span>
+        </div>
+
+        <div class="drive">
+          <strong>Windows</strong>
+          <span>C:</span>
+        </div>
+
+        <div class="drive">
+          <strong>Linux / macOS</strong>
+          <span>/</span>
+        </div>
+      </div>
     </div>
+
+    <section class="section">
+      <h2>System commands</h2>
+
+      <p>
+        Commands for controlling and interacting with the operating system.
+      </p>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">help</span>
+          <span class="status working">Working</span>
+        </div>
+
+        <p>
+          Displays information about available commands.
+        </p>
+      </div>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">shutdown</span>
+          <span class="status working">Working</span>
+        </div>
+
+        <p>
+          Shuts down Brack OS.
+        </p>
+      </div>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">die</span>
+          <span class="status working">Working</span>
+        </div>
+
+        <p>
+          Shuts down the system.
+        </p>
+      </div>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">reboot</span>
+          <span class="status working">Working</span>
+        </div>
+
+        <p>
+          Restarts Brack OS.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Administration</h2>
+
+      <p>
+        Commands that require administrator privileges.
+      </p>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">adm</span>
+          <span class="status experimental">Experimental</span>
+        </div>
+
+        <p>
+          Runs a command with administrator privileges.
+          <code>adm</code> is pronounced "Adam" and is short for administrator.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>User management</h2>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">addme</span>
+          <span class="status experimental">Experimental</span>
+        </div>
+
+        <p>
+          Adds a user to the system. User management is still under development.
+        </p>
+      </div>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">delme</span>
+          <span class="status experimental">Experimental</span>
+        </div>
+
+        <p>
+          Removes a user from the system. User deletion is currently
+          difficult to perform and remains under development.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Filesystem</h2>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">nf</span>
+          <span class="status working">Working</span>
+        </div>
+
+        <p>
+          Creates a directory.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Package management</h2>
+
+      <p>
+        Package management is planned, but these commands are not functional yet.
+      </p>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">update</span>
+          <span class="status unavailable">Not functional</span>
+        </div>
+
+        <p>
+          Intended to update installed software and packages.
+        </p>
+      </div>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">bndl</span>
+          <span class="status unavailable">Not functional</span>
+        </div>
+
+        <p>
+          Intended for managing or installing software packages.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Networking</h2>
+
+      <p>
+        Networking support is currently being developed. Ethernet drivers
+        have only recently entered development, so networking commands
+        are not functional yet.
+      </p>
+
+      <div class="command">
+        <div class="command-header">
+          <span class="command-name">ip</span>
+          <span class="status unavailable">Not functional</span>
+        </div>
+
+        <p>
+          Intended to display network information once networking support
+          is available.
+        </p>
+      </div>
+    </section>
+
   </div>
-</div>
-
-<section class="section">
-  <h2>System commands</h2>
-
-  <p>
-    Commands for controlling and interacting with the operating system.
-  </p>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">help</span>
-      <span class="status working">Working</span>
-    </div>
-
-    <p>
-      Displays information about available commands.
-    </p>
-  </div>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">shutdown</span>
-      <span class="status working">Working</span>
-    </div>
-
-    <p>
-      Shuts down Brack OS.
-    </p>
-  </div>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">die</span>
-      <span class="status working">Working</span>
-    </div>
-
-    <p>
-      Shuts down the system.
-    </p>
-  </div>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">reboot</span>
-      <span class="status working">Working</span>
-    </div>
-
-    <p>
-      Restarts Brack OS.
-    </p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Administration</h2>
-
-  <p>
-    Commands that require administrator privileges.
-  </p>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">adm</span>
-      <span class="status experimental">Experimental</span>
-    </div>
-
-    <p>
-      Runs a command with administrator privileges.
-      <code>adm</code> is pronounced "Adam" and is short for administrator.
-    </p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>User management</h2>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">addme</span>
-      <span class="status experimental">Experimental</span>
-    </div>
-
-    <p>
-      Adds a user to the system. User management is still under development.
-    </p>
-  </div>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">delme</span>
-      <span class="status experimental">Experimental</span>
-    </div>
-
-    <p>
-      Removes a user from the system. User deletion is currently
-      difficult to perform and remains under development.
-    </p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Filesystem</h2>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">nf</span>
-      <span class="status working">Working</span>
-    </div>
-
-    <p>
-      Creates a directory.
-    </p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Package management</h2>
-
-  <p>
-    Package management is planned, but these commands are not functional yet.
-  </p>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">update</span>
-      <span class="status unavailable">Not functional</span>
-    </div>
-
-    <p>
-      Intended to update installed software and packages.
-    </p>
-  </div>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">bndl</span>
-      <span class="status unavailable">Not functional</span>
-    </div>
-
-    <p>
-      Intended for managing or installing software packages.
-    </p>
-  </div>
-</section>
-
-<section class="section">
-  <h2>Networking</h2>
-
-  <p>
-    Networking support is currently being developed. Ethernet drivers
-    have only recently entered development, so networking commands
-    are not functional yet.
-  </p>
-
-  <div class="command">
-    <div class="command-header">
-      <span class="command-name">ip</span>
-      <span class="status unavailable">Not functional</span>
-    </div>
-
-    <p>
-      Intended to display network information once networking support
-      is available.
-    </p>
-  </div>
-</section>
-
-</div> </main> <footer> <div class="container"> Brack OS · Open source · Under development </div> </footer> </body> </html>
+</main>
+<footer>
+  <div class="container"> Brack OS · Open source · Under development </div>
+</footer>
+</body>
+</html>
