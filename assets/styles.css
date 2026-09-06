@@ -85,11 +85,19 @@ color: var(--blue);
 }
 
 .nav-links {
-display: flex;
-align-items: center;
-gap: 24px;
-color: var(--muted);
-font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav-links a {
+  white-space: nowrap;
+}
+
 }
 
 .nav-links a {
