@@ -1,238 +1,267 @@
-<div class="intro">
-  <div class="eyebrow">Questions & answers</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frequently asked questions about Brack OS.">
+  <title>Brack OS — FAQ</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
 
-  <h1>Frequently Asked Questions</h1>
+<nav>
+  <div id="navbar" class="container"></div>
+</nav>
+<script>
+  fetch("/nav.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    })
+    .catch(() => {});
+</script>
 
-  <p>
-    New to operating systems? Curious about what we're building?
-    Here's the stuff you probably want to know before diving in.
-  </p>
-</div>
+<main>
+  <div class="container">
 
-<div class="faq">
+    <div class="intro">
+      <div class="eyebrow">Questions & answers</div>
 
-  <div class="faq-item">
-    <h2>What is Brack OS?</h2>
+      <h1>Frequently Asked Questions</h1>
 
-    <p>
-      Brack OS is an open-source operating system being built from the
-      ground up, including our own custom kernel.
-    </p>
+      <p>
+        New to operating systems? Curious about what we're building?
+        Here's the stuff you probably want to know before diving in.
+      </p>
+    </div>
 
-    <p>
-      Right now, the project is focused on the foundations of the operating
-      system rather than a graphical desktop environment.
-    </p>
+    <div class="faq">
+
+      <div class="faq-item">
+        <h2>What is Brack OS?</h2>
+
+        <p>
+          Brack OS is an open-source operating system being built from the
+          ground up, including our own custom kernel.
+        </p>
+
+        <p>
+          Right now, the project is focused on the foundations of the operating
+          system rather than a graphical desktop environment.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Is Brack OS ready to use?</h2>
+
+        <p>
+          Not yet. Brack OS is still in active development and does not
+          currently have a public release that we consider ready for everyday use.
+        </p>
+
+        <p>
+          When a Canary build becomes available, we'll make it clear on the
+          website and provide instructions for trying it safely.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Will Brack OS replace Windows or macOS?</h2>
+
+        <p>
+          That's a very long-term question. Our immediate goal isn't to replace
+          anything. We're building Brack OS to learn, experiment, and see how
+          far we can take a completely custom operating system.
+        </p>
+
+        <p>
+          If it eventually becomes something you'd actually want to use every
+          day, that's a pretty nice bonus.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Do I need to be a programmer to use Brack OS?</h2>
+
+        <p>
+          No. Once Brack OS has a usable release, our goal is for people to be
+          able to try it without needing to understand kernel development.
+        </p>
+
+        <p>
+          The project is currently command-line based, though, so learning a
+          few basic commands will be useful.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>What is a kernel?</h2>
+
+        <p>
+          The kernel is the core part of an operating system. It is responsible
+          for things such as managing memory, talking to hardware, handling
+          processes, and providing the foundation that other software runs on.
+        </p>
+
+        <p>
+          In simple terms: it's the part of the operating system that sits
+          between your software and the hardware.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Why are you writing your own kernel?</h2>
+
+        <p>
+          Because we wanted to understand how operating systems actually work.
+        </p>
+
+        <p>
+          Using an existing kernel would let us build an operating system much
+          faster, but writing our own lets us learn about the foundations
+          directly.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>What hardware does Brack OS support?</h2>
+
+        <p>
+          Our current development focus is x64. ARM64, x86, and ARM32 are
+          planned targets, with other architectures potentially being explored
+          later.
+        </p>
+
+        <p>
+          Hardware support is one of the harder parts of operating system
+          development, so compatibility will grow over time.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Will Brack OS have a graphical interface?</h2>
+
+        <p>
+          Yes, that's the long-term goal.
+        </p>
+
+        <p>
+          We're starting with the lower-level parts of the operating system.
+          Once the kernel, drivers, and userspace have developed far enough,
+          we'd like to build a GUI on top of them.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Why is Brack OS command-line based?</h2>
+
+        <p>
+          Because a graphical interface is a lot more work than it might look
+          from the outside.
+        </p>
+
+        <p>
+          A CLI lets us work on the actual operating system underneath without
+          having to build an entire desktop environment first.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Is Brack OS open source?</h2>
+
+        <p>
+          Yes. The source code is publicly available on GitHub.
+        </p>
+
+        <p>
+          You can follow development, inspect the code, experiment with it,
+          and eventually contribute to the project.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Can I contribute if I don't know C or assembly?</h2>
+
+        <p>
+          Absolutely. Code isn't the only way to help.
+        </p>
+
+        <p>
+          Testing, documentation, website development, bug reports, ideas, and
+          simply getting the project in front of people who might be interested
+          can all be useful.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Where can I see what we're working on?</h2>
+
+        <p>
+          Check out the
+          <a href="/roadmap" style="color: var(--blue);">Brack OS roadmap</a>
+          for our current plans and priorities.
+        </p>
+
+        <p>
+          You can also follow the source code and development activity on
+          GitHub.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>When will Brack OS be finished?</h2>
+
+        <p>
+          We don't know. Operating system development is complicated, and
+          we're building this project in our spare time.
+        </p>
+
+        <p>
+          We'll publish our best estimates on the roadmap, but they're
+          estimates rather than promises.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>Can I install Brack OS on my main computer?</h2>
+
+        <p>
+          Not yet, and we wouldn't recommend replacing your existing operating
+          system with an experimental build when releases do begin.
+        </p>
+
+        <p>
+          Early builds will be much better suited to testing environments,
+          virtual machines, or spare hardware.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h2>What does "Canary" mean?</h2>
+
+        <p>
+          A Canary build is an early release intended for testing and
+          experimentation. It may contain bugs, missing features, or hardware
+          compatibility problems.
+        </p>
+
+        <p>
+          In other words: it's for people who want to see what we're building
+          before everything is polished.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="cta">
+      <h2>Still have a question?</h2>
+
+      <p>
+        If you can't find what you're looking for, we'd be happy to hear from you.
+      </p>
+
+      <a class="button" href="/helpbrackos">Get in touch →</a>
+    </div>
+
   </div>
-
-  <div class="faq-item">
-    <h2>Is Brack OS ready to use?</h2>
-
-    <p>
-      Not yet. Brack OS is still in active development and does not
-      currently have a public release that we consider ready for everyday use.
-    </p>
-
-    <p>
-      When a Canary build becomes available, we'll make it clear on the
-      website and provide instructions for trying it safely.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Will Brack OS replace Windows or macOS?</h2>
-
-    <p>
-      That's a very long-term question. Our immediate goal isn't to replace
-      anything. We're building Brack OS to learn, experiment, and see how
-      far we can take a completely custom operating system.
-    </p>
-
-    <p>
-      If it eventually becomes something you'd actually want to use every
-      day, that's a pretty nice bonus.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Do I need to be a programmer to use Brack OS?</h2>
-
-    <p>
-      No. Once Brack OS has a usable release, our goal is for people to be
-      able to try it without needing to understand kernel development.
-    </p>
-
-    <p>
-      The project is currently command-line based, though, so learning a
-      few basic commands will be useful.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>What is a kernel?</h2>
-
-    <p>
-      The kernel is the core part of an operating system. It is responsible
-      for things such as managing memory, talking to hardware, handling
-      processes, and providing the foundation that other software runs on.
-    </p>
-
-    <p>
-      In simple terms: it's the part of the operating system that sits
-      between your software and the hardware.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Why are you writing your own kernel?</h2>
-
-    <p>
-      Because we wanted to understand how operating systems actually work.
-    </p>
-
-    <p>
-      Using an existing kernel would let us build an operating system much
-      faster, but writing our own lets us learn about the foundations
-      directly.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>What hardware does Brack OS support?</h2>
-
-    <p>
-      Our current development focus is x64. ARM64, x86, and ARM32 are
-      planned targets, with other architectures potentially being explored
-      later.
-    </p>
-
-    <p>
-      Hardware support is one of the harder parts of operating system
-      development, so compatibility will grow over time.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Will Brack OS have a graphical interface?</h2>
-
-    <p>
-      Yes, that's the long-term goal.
-    </p>
-
-    <p>
-      We're starting with the lower-level parts of the operating system.
-      Once the kernel, drivers, and userspace have developed far enough,
-      we'd like to build a GUI on top of them.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Why is Brack OS command-line based?</h2>
-
-    <p>
-      Because a graphical interface is a lot more work than it might look
-      from the outside.
-    </p>
-
-    <p>
-      A CLI lets us work on the actual operating system underneath without
-      having to build an entire desktop environment first.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Is Brack OS open source?</h2>
-
-    <p>
-      Yes. The source code is publicly available on GitHub.
-    </p>
-
-    <p>
-      You can follow development, inspect the code, experiment with it,
-      and eventually contribute to the project.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Can I contribute if I don't know C or assembly?</h2>
-
-    <p>
-      Absolutely. Code isn't the only way to help.
-    </p>
-
-    <p>
-      Testing, documentation, website development, bug reports, ideas, and
-      simply getting the project in front of people who might be interested
-      can all be useful.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Where can I see what we're working on?</h2>
-
-    <p>
-      Check out the
-      <a href="/roadmap" style="color: var(--blue);">Brack OS roadmap</a>
-      for our current plans and priorities.
-    </p>
-
-    <p>
-      You can also follow the source code and development activity on
-      GitHub.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>When will Brack OS be finished?</h2>
-
-    <p>
-      We don't know. Operating system development is complicated, and
-      we're building this project in our spare time.
-    </p>
-
-    <p>
-      We'll publish our best estimates on the roadmap, but they're
-      estimates rather than promises.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>Can I install Brack OS on my main computer?</h2>
-
-    <p>
-      Not yet, and we wouldn't recommend replacing your existing operating
-      system with an experimental build when releases do begin.
-    </p>
-
-    <p>
-      Early builds will be much better suited to testing environments,
-      virtual machines, or spare hardware.
-    </p>
-  </div>
-
-  <div class="faq-item">
-    <h2>What does "Canary" mean?</h2>
-
-    <p>
-      A Canary build is an early release intended for testing and
-      experimentation. It may contain bugs, missing features, or hardware
-      compatibility problems.
-    </p>
-
-    <p>
-      In other words: it's for people who want to see what we're building
-      before everything is polished.
-    </p>
-  </div>
-
-</div>
-
-<div class="cta">
-  <h2>Still have a question?</h2>
-
-  <p>
-    If you can't find what you're looking for, we'd be happy to hear from you.
-  </p>
-
-  <a class="button" href="/helpbrackos">Get in touch →</a>
-</div>
+</main>
