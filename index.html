@@ -1,221 +1,808 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Brack OS is an open-source operating system built from the kernel up."> <title>Brack OS</title> <style> :root { --background: #07111f; --background-light: #0b1728; --card: rgba(16, 31, 51, 0.82); --card-hover: rgba(20, 41, 66, 0.95); --border: rgba(255, 255, 255, 0.09); --text: #f1f6fc; --muted: #9eafc3; --blue: #4da3ff; --cyan: #55d6e8; --green: #55d68a; --max-width: 1100px; } * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; color: var(--text); background: radial-gradient(circle at 15% 10%, rgba(77, 163, 255, 0.14), transparent 32rem), radial-gradient(circle at 85% 20%, rgba(85, 214, 232, 0.08), transparent 30rem), var(--background); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; } a { color: inherit; text-decoration: none; } .container { width: min(calc(100% - 32px), var(--max-width)); margin: 0 auto; } nav { position: sticky; top: 0; z-index: 10; background: rgba(7, 17, 31, 0.82); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); } #navbar { width: 100%; } .nav-inner { min-height: 68px; width: min(calc(100% - 32px), var(--max-width)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; } .logo { font-size: 1.15rem; font-weight: 750; letter-spacing: -0.02em; } .logo span { color: var(--blue); } .nav-links { display: flex; align-items: center; justify-content: flex-end; gap: 24px; color: var(--muted); font-size: 0.95rem; flex-wrap: wrap; } .nav-links a { white-space: nowrap; transition: color 0.2s ease; } .nav-links a:hover { color: var(--text); } .hero { padding: 110px 0 90px; text-align: center; } .eyebrow { display: inline-block; margin-bottom: 18px; color: var(--cyan); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; } h1 { max-width: 800px; margin: 0 auto; font-size: clamp(2.8rem, 8vw, 5.5rem); line-height: 1; letter-spacing: -0.055em; } .hero p { max-width: 650px; margin: 26px auto 32px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); } .buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; } .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 20px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255, 255, 255, 0.04); color: var(--text); font-weight: 650; transition: 0.2s ease; } .button:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.16); transform: translateY(-1px); } .button.primary { border-color: transparent; background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #06111e; } .button.primary:hover { filter: brightness(1.08); } section { padding: 70px 0; } .section-heading { max-width: 650px; margin-bottom: 32px; } .section-heading h2 { margin: 0 0 10px; font-size: clamp(1.9rem, 4vw, 2.7rem); letter-spacing: -0.035em; } .section-heading p { margin: 0; color: var(--muted); } .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; } .card { padding: 26px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12); } .card:hover { background: var(--card-hover); } .card-icon { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; margin-bottom: 18px; border-radius: 11px; background: rgba(77, 163, 255, 0.12); color: var(--cyan); font-size: 1.2rem; } .card h3 { margin: 0 0 8px; font-size: 1.15rem; } .card p { margin: 0; color: var(--muted); font-size: 0.95rem; } .status { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; } .status-card { padding: 30px; border: 1px solid var(--border); border-radius: 16px; background: linear-gradient(145deg, rgba(16, 31, 51, 0.95), rgba(10, 23, 39, 0.95)); } .status-card h3 { margin-top: 0; } .status-row { display: flex; justify-content: space-between; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--border); color: var(--muted); } .status-row:last-child { border-bottom: 0; } .status-row strong { color: var(--text); font-weight: 600; } .active { color: var(--green) !important; } .platforms { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } .platform { padding: 18px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.025); } .platform strong { display: block; margin-bottom: 3px; } .platform span { color: var(--muted); font-size: 0.88rem; } .roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; } .roadmap-item { position: relative; padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.025); } .roadmap-item::before { content: ""; display: block; width: 8px; height: 8px; margin-bottom: 14px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 14px rgba(77, 163, 255, 0.7); } .roadmap-item h3 { margin: 0 0 5px; font-size: 1rem; } .roadmap-item p { margin: 0; color: var(--muted); font-size: 0.86rem; } .team { display: flex; flex-wrap: wrap; gap: 10px; } .person { padding: 10px 15px; border: 1px solid var(--border); border-radius: 999px; background: rgba(255, 255, 255, 0.035); color: var(--muted); } .cta { padding: 60px 30px; border: 1px solid rgba(77, 163, 255, 0.18); border-radius: 20px; background: radial-gradient(circle at 50% 0%, rgba(77, 163, 255, 0.14), transparent 55%), var(--background-light); text-align: center; } .cta h2 { margin: 0 0 10px; font-size: clamp(1.8rem, 4vw, 2.5rem); } .cta p { max-width: 600px; margin: 0 auto 25px; color: var(--muted); } footer { padding: 40px 0; color: var(--muted); font-size: 0.85rem; text-align: center; } @media (max-width: 800px) { .cards, .status { grid-template-columns: 1fr; } .roadmap { grid-template-columns: repeat(2, 1fr); } .hero { padding: 80px 0 60px; } .nav-inner { justify-content: center; } .nav-links { justify-content: center; } } @media (max-width: 520px) { .nav-inner { min-height: 60px; padding: 10px 0; } .nav-links { gap: 10px 14px; font-size: 0.85rem; } .hero { padding: 65px 0 50px; } .roadmap, .platforms { grid-template-columns: 1fr; } section { padding: 50px 0; } } </style> </head> <body> <nav> <div id="navbar"></div> </nav> <script> fetch("/nav.html") .then(response => response.text()) .then(data => { document.getElementById("navbar").innerHTML = data; }); </script> <main> <section class="hero"> <div class="container"> <div class="eyebrow">Open-source operating system</div>
-<h1>Built from the ground up.</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Brack OS is an open-source operating system built from the ground up.">
+  <title>Brack OS</title>
 
-<p>
-  Brack OS is an experimental open-source operating system built from the
-  ground up, with a focus on learning, experimentation, and exploring how
-  operating systems work.
-</p>
+  <style>
+    :root {
+      --background: #07111f;
+      --background-light: #0b1728;
+      --card: rgba(16, 31, 51, 0.82);
+      --card-hover: rgba(20, 41, 66, 0.95);
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f1f6fc;
+      --muted: #9eafc3;
+      --blue: #4da3ff;
+      --cyan: #55d6e8;
+      --green: #55d68a;
+      --max-width: 1100px;
+    }
 
-<div class="buttons">
-  <a class="button primary" href="#project">Explore Brack OS</a>
-  <a class="button" href="/roadmap">View the roadmap</a>
-  <a class="button" href="https://github.com/BrackOS" target="_blank" rel="noopener">View on GitHub</a>
-</div>
+    * {
+      box-sizing: border-box;
+    }
 
-</div> </section> <section id="project"> <div class="container"> <div class="section-heading"> <h2>Why Brack OS?</h2> <p> Brack OS is a project built to explore the foundations of computing, one part of the system at a time. </p> </div>
-<div class="cards">
-  <div class="card">
-    <div class="card-icon">◉</div>
-    <h3>Custom Kernel</h3>
-    <p>
-      The foundation of Brack OS is its own kernel, developed as part of
-      the project rather than relying on an existing operating system kernel.
-    </p>
-  </div>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <div class="card">
-    <div class="card-icon">◇</div>
-    <h3>Open Source</h3>
-    <p>
-      The project is open source, allowing anyone to explore the code,
-      follow development, and contribute.
-    </p>
-  </div>
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(77, 163, 255, 0.14), transparent 32rem),
+        radial-gradient(circle at 85% 20%, rgba(85, 214, 232, 0.08), transparent 30rem),
+        var(--background);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
 
-  <div class="card">
-    <div class="card-icon">⬡</div>
-    <h3>Multiple Platforms</h3>
-    <p>
-      x64 is the current focus, with ARM64, x86, ARM32, and potentially
-      other architectures planned for the future.
-    </p>
-  </div>
-</div>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-</div> </section> <section> <div class="container"> <div class="section-heading"> <h2>Current status</h2> <p> Brack OS is still in development. It is not currently ready for a canary release, but development is ongoing. </p> </div>
-<div class="status">
-  <div class="status-card">
-    <h3>System status</h3>
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
 
-    <div class="status-row">
-      <span>Current architecture</span>
-      <strong>x64</strong>
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 17, 31, 0.82);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    #navbar {
+      width: 100%;
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 110px 0 90px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 26px auto 32px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 650;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #06111e;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.08);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      letter-spacing: -0.035em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+    }
+
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 11px;
+      background: rgba(77, 163, 255, 0.12);
+      color: var(--cyan);
+      font-size: 1.2rem;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .status {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .status-card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(
+        145deg,
+        rgba(16, 31, 51, 0.95),
+        rgba(10, 23, 39, 0.95)
+      );
+    }
+
+    .status-card h3 {
+      margin-top: 0;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .status-row:last-child {
+      border-bottom: 0;
+    }
+
+    .status-row strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .active {
+      color: var(--green) !important;
+    }
+
+    .platforms {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .platform {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .platform strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .platform span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .roadmap-item {
+      position: relative;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .roadmap-item::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(77, 163, 255, 0.7);
+    }
+
+    .roadmap-item h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+
+    .roadmap-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .team-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .team-card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .team-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+
+    .team-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      padding: 60px 30px;
+      border: 1px solid rgba(77, 163, 255, 0.18);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(77, 163, 255, 0.14), transparent 55%),
+        var(--background-light);
+      text-align: center;
+    }
+
+    .cta h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .cards,
+      .status,
+      .team-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding: 80px 0 60px;
+      }
+
+      .nav-inner {
+        justify-content: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-inner {
+        min-height: 60px;
+        padding: 10px 0;
+      }
+
+      .nav-links {
+        gap: 10px 14px;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        padding: 65px 0 50px;
+      }
+
+      .roadmap,
+      .platforms {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div id="navbar"></div>
+  </nav>
+
+  <script>
+    fetch("/nav.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="eyebrow">Open-source operating system</div>
+
+        <h1>Built from the ground up.</h1>
+
+        <p>
+          Brack OS is an experimental open-source operating system built from the
+          ground up, with a focus on learning, experimentation, and exploring how
+          operating systems work.
+        </p>
+
+        <div class="buttons">
+          <a class="button primary" href="#project">Explore Brack OS</a>
+          <a class="button" href="/roadmap">View the roadmap</a>
+          <a
+            class="button"
+            href="https://github.com/BrackOS"
+            target="_blank"
+            rel="noopener"
+          >
+            View on GitHub
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="project">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Why Brack OS?</h2>
+
+          <p>
+            Brack OS is a project built to explore the foundations of computing,
+            one part of the system at a time.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="card-icon">◉</div>
+
+            <h3>Custom Kernel</h3>
+
+            <p>
+              The foundation of Brack OS is its own kernel, developed as part of
+              the project rather than relying on an existing operating system kernel.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">◇</div>
+
+            <h3>Open Source</h3>
+
+            <p>
+              The project is open source, allowing anyone to explore the code,
+              follow development, and contribute.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">⬡</div>
+
+            <h3>Multiple Platforms</h3>
+
+            <p>
+              x64 is the current focus, with ARM64, x86, ARM32, and potentially
+              other architectures planned for the future.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Current status</h2>
+
+          <p>
+            Brack OS is still in development. It is not currently ready for a
+            canary release, but development is ongoing.
+          </p>
+        </div>
+
+        <div class="status">
+
+          <div class="status-card">
+
+            <h3>System status</h3>
+
+            <div class="status-row">
+              <span>Current architecture</span>
+              <strong>x64</strong>
+            </div>
+
+            <div class="status-row">
+              <span>Development status</span>
+              <strong class="active">Active development</strong>
+            </div>
+
+            <div class="status-row">
+              <span>Canary release</span>
+              <strong>Not yet available</strong>
+            </div>
+
+            <div class="status-row">
+              <span>Graphical interface</span>
+              <strong>Future goal</strong>
+            </div>
+
+          </div>
+
+          <div class="status-card">
+
+            <h3>Planned platforms</h3>
+
+            <div class="platforms">
+
+              <div class="platform">
+                <strong>x64</strong>
+                <span>Current focus</span>
+              </div>
+
+              <div class="platform">
+                <strong>ARM64</strong>
+                <span>Planned</span>
+              </div>
+
+              <div class="platform">
+                <strong>i386 / x86</strong>
+                <span>Planned</span>
+              </div>
+
+              <div class="platform">
+                <strong>ARM32</strong>
+                <span>Planned</span>
+              </div>
+
+              <div class="platform">
+                <strong>RISC-V</strong>
+                <span>Possible future platform</span>
+              </div>
+
+              <div class="platform">
+                <strong>16-bit</strong>
+                <span>Possible future platform</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Explore the kernels</h2>
+
+          <p>
+            Learn more about the different architecture targets and the work behind them.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <h3>x64 Kernel</h3>
+            <p>Information about the current primary kernel target.</p>
+            <br>
+            <a class="button" href="/x64">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <h3>x86 Kernel</h3>
+            <p>Explore the planned 32-bit x86 architecture.</p>
+            <br>
+            <a class="button" href="/x86">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <h3>ARM64 Kernel</h3>
+            <p>Information about the future ARM64 target.</p>
+            <br>
+            <a class="button" href="/ARM64">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <h3>ARM32 Kernel</h3>
+            <p>Information about the future ARM32 target.</p>
+            <br>
+            <a class="button" href="/ARM32">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <h3>16-bit Kernel</h3>
+            <p>Experimental and exploratory 16-bit kernel information.</p>
+            <br>
+            <a class="button" href="/16bit">Learn more →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Where we're going</h2>
+
+          <p>
+            Brack OS has a long way to go. We're starting with the kernel and
+            working toward drivers, userspace, and eventually a graphical interface.
+          </p>
+        </div>
+
+        <div class="roadmap">
+
+          <div class="roadmap-item">
+            <h3>Kernel</h3>
+            <p>Build and improve the foundations of the system.</p>
+          </div>
+
+          <div class="roadmap-item">
+            <h3>Drivers</h3>
+            <p>Expand hardware support across platforms.</p>
+          </div>
+
+          <div class="roadmap-item">
+            <h3>Userspace</h3>
+            <p>Develop the software that runs on top of the kernel.</p>
+          </div>
+
+          <div class="roadmap-item">
+            <h3>GUI</h3>
+            <p>A graphical environment is a long-term goal.</p>
+          </div>
+
+        </div>
+
+        <div class="buttons" style="margin-top: 28px;">
+          <a class="button primary" href="/roadmap">
+            See the full roadmap →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>The people behind Brack OS</h2>
+        </div>
+
+        <div class="team-cards">
+
+          <div class="team-card">
+            <h3>Brent R.</h3>
+            <p>
+              Co-founder and CEO, leading the project's technical direction.
+            </p>
+          </div>
+
+          <div class="team-card">
+            <h3>Jack C.</h3>
+            <p>
+              Co-founder, COO, and CFO, helping keep the project organized and moving forward.
+            </p>
+          </div>
+
+          <div class="team-card">
+            <h3>Noah H.</h3>
+            <p>
+              Developer contributing to the low-level work that helps build Brack OS.
+            </p>
+          </div>
+
+          <div class="team-card">
+            <h3>Jayden L.</h3>
+            <p>
+              Chief Marketing Officer, helping introduce Brack OS to more people.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <div class="cta">
+
+          <h2>Want to be part of it?</h2>
+
+          <p>
+            Brack OS is an evolving project, and there's plenty of room to learn,
+            experiment, and help build what's next.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary" href="/helpbrackos">
+              Work with us
+            </a>
+
+            <a class="button" href="/donations">
+              Support Brack OS
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Brack OS · Open source · Under development
     </div>
+  </footer>
 
-    <div class="status-row">
-      <span>Development status</span>
-      <strong class="active">Active development</strong>
-    </div>
-
-    <div class="status-row">
-      <span>Canary release</span>
-      <strong>Not yet available</strong>
-    </div>
-
-    <div class="status-row">
-      <span>Graphical interface</span>
-      <strong>Future goal</strong>
-    </div>
-  </div>
-
-  <div class="status-card">
-    <h3>Planned platforms</h3>
-
-    <div class="platforms">
-      <div class="platform">
-        <strong>x64</strong>
-        <span>Current focus</span>
-      </div>
-
-      <div class="platform">
-        <strong>ARM64</strong>
-        <span>Planned</span>
-      </div>
-
-      <div class="platform">
-        <strong>i386 / x86</strong>
-        <span>Planned</span>
-      </div>
-
-      <div class="platform">
-        <strong>ARM32</strong>
-        <span>Planned</span>
-      </div>
-
-      <div class="platform">
-        <strong>RISC-V</strong>
-        <span>Possible future platform</span>
-      </div>
-
-      <div class="platform">
-        <strong>16-bit</strong>
-        <span>Possible future platform</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div> </section> <section> <div class="container"> <div class="section-heading"> <h2>Explore the kernels</h2> <p> Learn more about the different architecture targets and the work behind them. </p> </div>
-<div class="cards">
-  <div class="card">
-    <h3>x64 Kernel</h3>
-    <p>Information about the current primary kernel target.</p>
-    <br>
-    <a class="button" href="/x64">Learn more →</a>
-  </div>
-
-  <div class="card">
-    <h3>x86 Kernel</h3>
-    <p>Explore the planned 32-bit x86 architecture.</p>
-    <br>
-    <a class="button" href="/x86">Learn more →</a>
-  </div>
-
-  <div class="card">
-    <h3>ARM64 Kernel</h3>
-    <p>Information about the future ARM64 target.</p>
-    <br>
-    <a class="button" href="/ARM64">Learn more →</a>
-  </div>
-
-  <div class="card">
-    <h3>ARM32 Kernel</h3>
-    <p>Information about the future ARM32 target.</p>
-    <br>
-    <a class="button" href="/ARM32">Learn more →</a>
-  </div>
-
-  <div class="card">
-    <h3>16-bit Kernel</h3>
-    <p>Experimental and exploratory 16-bit kernel information.</p>
-    <br>
-    <a class="button" href="/16bit">Learn more →</a>
-  </div>
-</div>
-
-</div> </section> <section> <div class="container"> <div class="section-heading"> <h2>Where we're going</h2> <p> Brack OS has a long way to go. We're starting with the kernel and working toward drivers, userspace, and eventually a graphical interface. </p> </div>
-<div class="roadmap">
-  <div class="roadmap-item">
-    <h3>Kernel</h3>
-    <p>Build and improve the foundations of the system.</p>
-  </div>
-
-  <div class="roadmap-item">
-    <h3>Drivers</h3>
-    <p>Expand hardware support across platforms.</p>
-  </div>
-
-  <div class="roadmap-item">
-    <h3>Userspace</h3>
-    <p>Develop the software that runs on top of the kernel.</p>
-  </div>
-
-  <div class="roadmap-item">
-    <h3>GUI</h3>
-    <p>A graphical environment is a long-term goal.</p>
-  </div>
-</div>
-
-<div class="buttons" style="margin-top: 28px;">
-  <a class="button primary" href="/roadmap">See the full roadmap →</a>
-</div>
-
-</div> </section> <section> <div class="container"> <div class="section-heading"> <h2>The people behind Brack OS</h2> </div>
-<div class="team-cards">
-
-  <div class="team-card">
-    <h3>Brent R.</h3>
-    <p>
-      Co-founder and CEO, focused primarily on kernel development and the core system.
-    </p>
-  </div>
-
-  <div class="team-card">
-    <h3>Jack C.</h3>
-    <p>
-      Co-founder, COO, and CFO, helping manage the project, code, website, and testing.
-    </p>
-  </div>
-
-  <div class="team-card">
-    <h3>Noah H.</h3>
-    <p>
-      Brack OS developer focused primarily on C and low-level system development.
-    </p>
-  </div>
-
-  <div class="team-card">
-    <h3>Jayden L.</h3>
-    <p>
-      Chief Marketing Officer, focused on promoting Brack OS and growing its community.
-    </p>
-  </div>
-
-</div>
-
-
-</div> </section> <section> <div class="container"> <div class="cta"> <h2>Want to be part of it?</h2>
-  <p>
-    Brack OS is an evolving project, and there's plenty of room to learn,
-    experiment, and help build what's next.
-  </p>
-
-  <div class="buttons">
-    <a class="button primary" href="/helpbrackos">Work with us</a>
-    <a class="button" href="/donations">Support Brack OS</a>
-    <a class="button" href="https://github.com/BrackOS" target="_blank" rel="noopener">GitHub</a>
-  </div>
-</div>
-
-</div> </section> </main> <footer> <div class="container"> Brack OS · Open source · Under development </div> </footer> </body> </html>
+</body>
+</html>
