@@ -1,0 +1,94 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="The story behind the new Brack OS website."> <title>Welcome to the New Brack OS Website</title> <style> :root { --background: #eef3f8; --card: #ffffff; --border: rgba(20, 45, 75, 0.10); --text: #17263a; --muted: #607086; --blue: #1677d2; --cyan: #128fa3; --max-width: 800px; } * { box-sizing: border-box; } body { margin: 0; color: var(--text); background: radial-gradient(circle at 10% 0%, rgba(77, 163, 255, 0.13), transparent 30rem), radial-gradient(circle at 90% 15%, rgba(85, 214, 232, 0.10), transparent 28rem), var(--background); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; } a { color: inherit; text-decoration: none; } .container { width: min(calc(100% - 32px), var(--max-width)); margin: 0 auto; } nav { background: rgba(248, 250, 252, 0.88); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); } .nav-inner { width: min(calc(100% - 32px), 1050px); min-height: 68px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; } .logo { font-size: 1.15rem; font-weight: 750; } .logo span { color: var(--blue); } .nav-links { display: flex; gap: 22px; color: var(--muted); font-size: 0.95rem; } .nav-links a:hover { color: var(--text); } main { padding: 80px 0; } .back { display: inline-block; margin-bottom: 35px; color: var(--blue); font-weight: 650; } .post-header { margin-bottom: 45px; } .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; color: var(--muted); font-size: 0.88rem; } .tag { color: var(--blue); font-weight: 700; } h1 { margin: 0 0 18px; font-size: clamp(2.5rem, 7vw, 4.4rem); line-height: 1.05; letter-spacing: -0.05em; } .subtitle { margin: 0; color: var(--muted); font-size: 1.15rem; } article { padding: 35px; border: 1px solid var(--border); border-radius: 18px; background: var(--card); box-shadow: 0 12px 40px rgba(25, 55, 90, 0.06); } article h2 { margin: 35px 0 10px; font-size: 1.5rem; letter-spacing: -0.02em; } article h2:first-child { margin-top: 0; } article p { margin: 0 0 18px; color: var(--muted); } article p:last-child { margin-bottom: 0; } .end { margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--border); color: var(--muted); } footer { padding: 40px 0; color: var(--muted); font-size: 0.85rem; text-align: center; } @media (max-width: 650px) { .nav-inner { padding: 12px 0; flex-direction: column; gap: 10px; } .nav-links { flex-wrap: wrap; justify-content: center; gap: 8px 14px; font-size: 0.85rem; } main { padding: 55px 0; } article { padding: 24px; } } </style> </head> <body> <nav> <div class="nav-inner"> <a class="logo" href="/">Brack<span>OS</span></a>
+<div class="nav-links">
+  <a href="/roadmap">Roadmap</a>
+  <a href="/docs">Docs</a>
+  <a href="/faq">FAQ</a>
+  <a href="/blog">Blog</a>
+  <a href="/about">About</a>
+  <a href="https://github.com/BrackOS" target="_blank" rel="noopener">GitHub</a>
+</div>
+
+</div> </nav> <main> <div class="container">
+<a class="back" href="/blog">← Back to the blog</a>
+
+<header class="post-header">
+
+  <div class="meta">
+    <span>September 6, 2026</span>
+    <span>·</span>
+    <span class="tag">Website</span>
+  </div>
+
+  <h1>Welcome to the new Brack OS website</h1>
+
+  <p class="subtitle">
+    A new look for the project as development continues.
+  </p>
+
+</header>
+
+<article>
+
+  <h2>A fresh start</h2>
+
+  <p>
+    The Brack OS website has gotten a major redesign.
+    The old site was functional, but it was very much a work in progress
+    and didn't do a great job of explaining what Brack OS actually is.
+  </p>
+
+  <p>
+    The new design is meant to make the project easier to understand,
+    whether you're already familiar with operating system development
+    or you're just someone who thinks building an operating system
+    sounds really cool.
+  </p>
+
+  <h2>Less terminal, more approachable</h2>
+
+  <p>
+    Brack OS is currently a command-line-based project, but that doesn't
+    mean the website needs to look like a terminal.
+  </p>
+
+  <p>
+    We've moved toward a cleaner card-based design with a darker,
+    blue-toned interface. The goal is to make the site feel like a
+    modern technology project without making it look like you're about
+    to accidentally install something dangerous on your computer.
+  </p>
+
+  <h2>What's happening with Brack OS?</h2>
+
+  <p>
+    The project is still in early development. Our current focus is the
+    x64 kernel, with other architectures planned for the future.
+  </p>
+
+  <p>
+    There's still a lot of work ahead, including kernel development,
+    drivers, userspace, and eventually a graphical interface.
+  </p>
+
+  <p>
+    If you'd like to see where everything is headed, check out the
+    Brack OS roadmap.
+  </p>
+
+  <h2>What's next?</h2>
+
+  <p>
+    We're continuing development toward the first Canary builds.
+    As the project develops, we'll use this blog to share updates,
+    development milestones, announcements, and other things happening
+    behind the scenes.
+  </p>
+
+  <div class="end">
+    Thanks for checking out Brack OS. We're still early in the journey,
+    but we're excited to see where it goes.
+  </div>
+
+</article>
+
+</div> </main> <footer> <div class="container"> Brack OS · Open source · Under development </div> </footer> </body> </html>
