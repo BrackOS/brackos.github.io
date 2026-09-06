@@ -1,105 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="News and development updates from the Brack OS project.">
-  <title>Brack OS — Blog</title>
-  <link rel="stylesheet" href="/assets/styles.css">
-</head>
-<body>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="News and development updates from the Brack OS project."> <title>Brack OS — Blog</title> <link rel="stylesheet" href="/assets/styles.css"> <style> body { background: radial-gradient(circle at 10% 5%, rgba(77, 163, 255, 0.10), transparent 28rem), radial-gradient(circle at 90% 15%, rgba(85, 214, 232, 0.07), transparent 28rem), #eaf0f7; color: #172234; } nav { background: rgba(234, 240, 247, 0.88); border-bottom: 1px solid rgba(23, 34, 52, 0.10); } .nav-links { color: #64748b; } .nav-links a:hover { color: #172234; } main { padding: 90px 0; } .intro { max-width: 700px; margin-bottom: 45px; } .intro p { margin: 0; color: #64748b; font-size: 1.1rem; } .featured, .post { display: block; border: 1px solid rgba(23, 34, 52, 0.10); border-radius: 16px; background: rgba(255, 255, 255, 0.82); box-shadow: 0 14px 40px rgba(23, 34, 52, 0.08); transition: 0.2s ease; } .featured { padding: 32px; margin-bottom: 55px; } .post { padding: 26px; } .featured:hover, .post:hover { background: #ffffff; border-color: rgba(77, 163, 255, 0.25); transform: translateY(-2px); } .post-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #718096; font-size: 0.85rem; margin-bottom: 12px; } .tag { color: #147fa3; font-weight: 700; } .featured h2 { margin: 0 0 10px; color: #172234; font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.035em; } .post h3 { margin: 0 0 8px; color: #172234; font-size: 1.2rem; } .featured p, .post p { color: #64748b; margin: 0 0 18px; } .read-more { color: #1677d2; font-weight: 700; } .section-title { margin: 0 0 22px; color: #172234; font-size: 1.8rem; } .posts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; } footer { color: #64748b; } @media (max-width: 700px) { main { padding: 65px 0; } .posts { grid-template-columns: 1fr; } .featured { padding: 25px; } } </style> </head> <body> <div id="navbar"></div> <script> fetch("/nav.html") .then(response => response.text()) .then(data => { document.getElementById("navbar").innerHTML = data; }) .catch(() => {}); </script> <main> <div class="container">
+<div class="intro">
+  <div class="eyebrow">Brack OS development</div>
 
-<nav>
-  <div id="navbar" class="container"></div>
-</nav>
-<script>
-  fetch("/nav.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("navbar").innerHTML = data;
-    })
-    .catch(() => {});
-</script>
+  <h1>News & updates.</h1>
 
-<main>
-  <div class="container">
-    <div class="intro">
-      <div class="eyebrow">Brack OS development</div>
+  <p>
+    Development updates, project news, release announcements, and
+    occasional stories from the Brack OS project.
+  </p>
+</div>
 
-      <h1>News & updates.</h1>
+<a class="featured" href="/blog/website-redesign">
 
-      <p>
-        Development updates, project news, release announcements, and
-        occasional stories from the Brack OS project.
-      </p>
-    </div>
-
-    <a class="featured" href="/blog/website-redesign">
-
-      <div class="post-meta">
-        <span>September 6, 2026</span>
-        <span>·</span>
-        <span class="tag">Website</span>
-      </div>
-
-      <h2>Welcome to the new Brack OS website</h2>
-
-      <p>
-        We've redesigned the Brack OS website to make it easier to understand
-        what we're building, where the project is going, and how you can get involved.
-      </p>
-
-      <span class="read-more">Read article →</span>
-
-    </a>
-
-    <h2 class="section-title">Recent posts</h2>
-
-    <div class="posts">
-
-      <a class="post" href="/blog/x64-development">
-
-        <div class="post-meta">
-          <span>September 2026</span>
-          <span>·</span>
-          <span class="tag">Development</span>
-        </div>
-
-        <h3>Working toward the x64 Canary</h3>
-
-        <p>
-          Our current focus is the x64 kernel as we work toward our first
-          public Canary build.
-        </p>
-
-        <span class="read-more">Read article →</span>
-
-      </a>
-
-      <a class="post" href="/roadmap">
-
-        <div class="post-meta">
-          <span>2026</span>
-          <span>·</span>
-          <span class="tag">Project</span>
-        </div>
-
-        <h3>What's next for Brack OS?</h3>
-
-        <p>
-          See what we're planning as we work toward a more complete operating system.
-        </p>
-
-        <span class="read-more">View roadmap →</span>
-
-      </a>
-
-    </div>
-
+  <div class="post-meta">
+    <span>September 6, 2026</span>
+    <span>·</span>
+    <span class="tag">Website</span>
   </div>
-</main>
-<footer>
-  <div class="container"> Brack OS · Open source · Under development </div>
-</footer>
-</body>
-</html>
+
+  <h2>Welcome to the new Brack OS website</h2>
+
+  <p>
+    We've redesigned the Brack OS website to make it easier to understand
+    what we're building, where the project is going, and how you can get involved.
+  </p>
+
+  <span class="read-more">Read article →</span>
+
+</a>
+
+<h2 class="section-title">Recent posts</h2>
+
+<div class="posts">
+
+  <a class="post" href="/blog/x64-development">
+
+    <div class="post-meta">
+      <span>September 2026</span>
+      <span>·</span>
+      <span class="tag">Development</span>
+    </div>
+
+    <h3>Working toward the x64 Canary</h3>
+
+    <p>
+      Our current focus is the x64 kernel as we work toward our first
+      public Canary build.
+    </p>
+
+    <span class="read-more">Read article →</span>
+
+  </a>
+
+  <a class="post" href="/roadmap">
+
+    <div class="post-meta">
+      <span>2026</span>
+      <span>·</span>
+      <span class="tag">Project</span>
+    </div>
+
+    <h3>What's next for Brack OS?</h3>
+
+    <p>
+      See what we're planning as we work toward a more complete operating system.
+    </p>
+
+    <span class="read-more">View roadmap →</span>
+
+  </a>
+
+</div>
+
+</div> </main> <footer> <div class="container"> Brack OS · Open source · Under development </div> </footer> </body> </html>
