@@ -1,3 +1,4 @@
+ <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Page not found — Brack OS."> <title>Brack OS — Page Not Found</title> <link rel="stylesheet" href="/assets/styles.css"> </head> <body> <nav> <div id="navbar" class="container"></div> </nav> <script> fetch("/nav.html") .then(response => response.text()) .then(data => { document.getElementById("navbar").innerHTML = data; }) .catch(() => {}); </script> <main> <section class="page-hero"> <div class="container">
   <div class="eyebrow">404 · Page not found</div>
 
   <h1>Well, this is awkward.</h1>
@@ -18,3 +19,19 @@
   </div>
 
 </div>
+
+</section> <section class="page"> <div class="container content">
+  <div class="notice">
+
+    <strong>Lost in the filesystem?</strong>
+
+    <p>
+      Try heading back to the homepage, or use the navigation above
+      to find what you're looking for.
+    </p>
+
+  </div>
+
+</div>
+
+</section> </main> <footer> <div class="container"> Brack OS · Open source · Under development </div> </footer> </body> </html>
