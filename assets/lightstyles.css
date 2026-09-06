@@ -19,7 +19,7 @@
 body {
   font-family: 'JetBrains Mono Local', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
   background-color: #ffffff;
-  color: #39ff14; /* bright green text */
+  color: #000000; /* black text */
   text-align: center;
 }
 
@@ -40,5 +40,5 @@ button {
 
 a { text-decoration: none; color: #7CFC00; }
 
-/* Headings inherit the green color  */
-h1, h2, h3, h4, h5, h6 { color: #39ff14; }
+/* Headings inherit the black color  */
+h1, h2, h3, h4, h5, h6 { color: #000000; }
