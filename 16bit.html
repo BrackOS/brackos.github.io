@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<nav>
-  <div class="container nav-inner">
-    <a class="logo" href="/">Brack<span>OS</span></a>
-    <div class="nav-links">
-      <a href="/about">About</a>
-      <a href="/helpbrackos">Get Involved</a>
-      <a href="https://github.com/BrackOS" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-</nav>
+<div id="navbar"></div>
+
+<script>
+  fetch("/nav.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    });
+</script>
+
 
 <main>
   <section class="page-hero">
