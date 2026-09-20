@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blog | BrackOS</title>
+
+    <meta
+        name="description"
+        content="Development updates, technical writing, news, and other posts from the BrackOS project."
+    >
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<main>
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge">BrackOS Blog</span>
+
+            <h1>Updates from BrackOS.</h1>
+
+            <p class="lead">
+                Development updates, technical articles, project news,
+                and whatever else we feel like writing about.
+            </p>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div id="blog-posts" class="grid grid-2">
+                <div class="card">
+                    <span class="badge">Loading</span>
+                    <h2>Loading posts...</h2>
+                    <p class="muted mb-0">
+                        Getting the latest posts from BrackOS.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                id="blog-error"
+                class="card"
+                style="display: none; margin-top: 20px;"
+            >
+                <span class="badge badge-warning">Unable to load</span>
+
+                <h2>We couldn't load the posts.</h2>
+
+                <p class="mb-0">
+                    Try refreshing the page. If the problem continues,
+                    the blog index may be temporarily unavailable.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<script>
+    async function loadPosts() {
+        const container = document.getElementById("blog-posts");
+        const error = document.getElementById("blog-error");
+
+        try {
+            const response = await fetch("posts.json", {
+                cache: "no-cache"
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to load posts.json");
+            }
+
+            const posts = await response.json();
+
+            if (!Array.isArray(posts) || posts.length === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <span class="badge">Blog</span>
+                        <h2>No posts yet.</h2>
+                        <p class="muted mb-0">
+                            Check back later for updates from the BrackOS team.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            /*
+             * Newest posts appear first.
+             *
+             * posts.json should contain dates in YYYY-MM-DD format.
+             */
+            posts.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            });
+
+            container.innerHTML = posts.map(post => `
+                <article class="card card-hover">
+
+                    <span class="badge">${escapeHTML(post.category || "BrackOS")}</span>
+
+                    <p class="muted" style="margin-top: 16px; margin-bottom: 8px;">
+                        ${escapeHTML(formatDate(post.date))}
+                    </p>
+
+                    <h2>${escapeHTML(post.title)}</h2>
+
+                    <p>
+                        ${escapeHTML(post.description)}
+                    </p>
+
+                    <a
+                        class="button button-secondary button-small"
+                        href="${safeURL(post.url)}"
+                    >
+                        Read Post
+                    </a>
+
+                </article>
+            `).join("");
+
+        } catch (err) {
+            console.error(err);
+
+            container.innerHTML = "";
+            error.style.display = "block";
+        }
+    }
+
+
+    function formatDate(dateString) {
+        const date = new Date(dateString + "T00:00:00");
+
+        if (Number.isNaN(date.getTime())) {
+            return dateString;
+        }
+
+        return date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+    }
+
+
+    function escapeHTML(value) {
+        const element = document.createElement("div");
+        element.textContent = String(value ?? "");
+        return element.innerHTML;
+    }
+
+
+    function safeURL(value) {
+        const url = String(value ?? "");
+
+        /*
+         * Blog posts are expected to be local HTML files.
+         * Prevent arbitrary protocols from being inserted into links.
+         */
+        if (
+            url.startsWith("./") ||
+            url.startsWith("../") ||
+            url.startsWith("/")
+        ) {
+            return url;
+        }
+
+        return "#";
+    }
+
+
+    loadPosts();
+</script>
+
+</body>
+</html>
