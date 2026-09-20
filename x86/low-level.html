@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrackOS x86 — Low-Level</title>
+
+    <meta
+        name="description"
+        content="Low-level technical documentation for the BrackOS x86 kernel."
+    >
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<main>
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge">Technical Documentation</span>
+
+            <h1>BrackOS x86</h1>
+
+            <p class="lead">
+                A look under the hood at the boot process, kernel,
+                display, keyboard, memory, and shell.
+            </p>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Architecture</h2>
+
+                <p>
+                    BrackOS x86 is the 32-bit x86 release of BrackOS.
+                    It is designed as a small, freestanding kernel with
+                    direct hardware access and a simple command shell.
+                </p>
+
+                <div class="grid grid-2">
+
+                    <article class="card">
+                        <span class="badge">CPU</span>
+                        <h3>x86-32</h3>
+                        <p>
+                            The kernel targets 32-bit x86 processors and
+                            is built as a freestanding kernel rather than
+                            a conventional userspace application.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <span class="badge">Boot</span>
+                        <h3>GRUB / Multiboot</h3>
+                        <p>
+                            GRUB is responsible for loading the kernel
+                            and transferring control to its entry point.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <h2>Memory layout</h2>
+
+                <p>
+                    The kernel begins at 1 MiB and uses a linker script
+                    to organize its code and data into aligned sections.
+                </p>
+
+                <div class="code-block">
+<pre><code>0x00000000
+     │
+     │ Reserved / boot memory
+     │
+0x00100000  ← Kernel starts
+     │
+     │ .text
+     │ .rodata
+     │ .data
+     │ .bss
+     │
+     ▼
+
+0x000B8000  ← VGA text buffer</code></pre>
+                </div>
+
+                <p class="mb-0">
+                    A fixed stack is allocated in the kernel's
+                    uninitialized data section. There is no heap or
+                    dynamic memory allocator.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>VGA display</h2>
+
+                <p>
+                    The x86 kernel writes directly to the VGA text buffer
+                    at <code>0xB8000</code>.
+                </p>
+
+                <div class="code-block">
+<pre><code>Resolution: 80 × 25 characters
+Foreground:  16 colors
+Background:  8 colors
+Buffer:      0xB8000</code></pre>
+                </div>
+
+                <p>
+                    The display driver handles character output,
+                    newlines, scrolling, clearing the screen, colors,
+                    cursor positioning, and backspace.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Input</span>
+
+                <h2>PS/2 keyboard</h2>
+
+                <p>
+                    Keyboard input is obtained by polling the PS/2
+                    controller.
+                </p>
+
+                <div class="code-block">
+<pre><code>Data port:    0x60
+Status port:  0x64
+Input:        Scancode set 1</code></pre>
+                </div>
+
+                <p class="mb-0">
+                    Shift keys are supported, allowing uppercase letters
+                    and shifted symbols. The polling loop uses the x86
+                    <code>pause</code> instruction while waiting for
+                    input.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Kernel structure</h2>
+
+                <div class="grid grid-2">
+
+                    <article class="card">
+                        <h3><code>boot.s</code></h3>
+                        <p>
+                            Boot entry point, initial stack setup, and
+                            transition into the C kernel.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>kernel.c</code></h3>
+                        <p>
+                            Main kernel logic, shell, command parsing,
+                            line input, and string utilities.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>vga.c</code> / <code>vga.h</code></h3>
+                        <p>
+                            VGA text output and screen management.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>keyboard.c</code> / <code>keyboard.h</code></h3>
+                        <p>
+                            PS/2 keyboard polling and scancode handling.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>io.h</code></h3>
+                        <p>
+                            Low-level I/O port helpers and MSR access
+                            utilities.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>linker.ld</code></h3>
+                        <p>
+                            Defines the kernel memory layout and section
+                            placement.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>grub.cfg</code></h3>
+                        <p>
+                            GRUB boot configuration used to load BrackOS.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Current limitations</span>
+
+                <h2>What isn't here yet?</h2>
+
+                <ul>
+                    <li>No filesystem or disk driver</li>
+                    <li>No multitasking</li>
+                    <li>No networking</li>
+                    <li>No dynamic memory allocator</li>
+                    <li>No timer subsystem</li>
+                    <li>No USB support</li>
+                    <li>No graphics subsystem beyond VGA text mode</li>
+                    <li>No interrupt-driven device handling</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
