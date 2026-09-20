@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrackOS x64 — Low-Level</title>
+
+    <meta
+        name="description"
+        content="Low-level technical documentation for the BrackOS x64 kernel."
+    >
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<main>
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge">Technical Documentation</span>
+
+            <h1>BrackOS x64</h1>
+
+            <p class="lead">
+                A look under the hood at the boot process, CPU setup,
+                memory, display, keyboard, and kernel structure.
+            </p>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Boot process</h2>
+
+                <p>
+                    BrackOS x64 is loaded by GRUB 2 using the Multiboot2
+                    protocol. GRUB starts the kernel in 32-bit protected
+                    mode. From there, BrackOS performs the transition
+                    into 64-bit long mode itself.
+                </p>
+
+                <ol>
+                    <li>GRUB loads the BrackOS kernel.</li>
+                    <li>The <code>_start</code> entry point is reached.</li>
+                    <li>A temporary 32-bit stack is established.</li>
+                    <li>The Multiboot2 information pointer is preserved.</li>
+                    <li>Paging structures are created.</li>
+                    <li>PAE is enabled.</li>
+                    <li>Long mode is enabled through the EFER MSR.</li>
+                    <li>Paging is enabled.</li>
+                    <li>A 64-bit GDT is loaded.</li>
+                    <li>The kernel performs a far jump into 64-bit code.</li>
+                    <li>A 64-bit stack is established.</li>
+                    <li><code>kernel_main()</code> is called.</li>
+                </ol>
+
+                <p>
+                    The kernel uses a Multiboot2 header and a GRUB
+                    configuration with automatic graphics-mode detection.
+                    The boot configuration supports both BIOS and UEFI
+                    systems.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="grid grid-2">
+
+                <article class="card">
+                    <span class="badge">CPU</span>
+                    <h3>x86-64 Long Mode</h3>
+                    <p>
+                        After startup, the kernel runs in 64-bit long mode
+                        using the AMD64/Intel EM64T instruction environment.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">Paging</span>
+                    <h3>2 MiB Pages</h3>
+                    <p>
+                        Paging is enabled using a PML4, PDPT, and page
+                        directory. The current mapping identity-maps the
+                        first 2 MiB of physical memory.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">GDT</span>
+                    <h3>64-bit Segmentation</h3>
+                    <p>
+                        A small GDT provides a null descriptor, a 64-bit
+                        code descriptor, and a data descriptor.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">Interrupts</span>
+                    <h3>Not implemented</h3>
+                    <p>
+                        The current kernel does not initialize an IDT,
+                        enable interrupts, or provide hardware IRQ
+                        handlers.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Memory</h2>
+
+                <p>
+                    The kernel is linked to begin at
+                    <code>0x100000</code>, or 1 MiB. Its linker script
+                    aligns the major sections to 4 KiB boundaries.
+                </p>
+
+                <div class="code-block">
+<pre><code>0x00000000
+     │
+     │ Reserved / boot memory
+     │
+0x00100000  ← Kernel base
+     │
+     │ Kernel sections
+     │ .text
+     │ .rodata
+     │ .data
+     │ .bss
+     │
+     ▼
+
+0x000B8000  ← VGA text buffer</code></pre>
+                </div>
+
+                <p>
+                    A fixed 16 KiB stack is allocated in the
+                    <code>.bss</code> section. There is currently no heap,
+                    allocator, or dynamic memory management.
+                </p>
+
+                <p>
+                    Paging uses 2 MiB pages with identity mapping.
+                    This means that, within the currently mapped region,
+                    virtual and physical addresses are the same.
+                </p>
+
+                <p>
+                    The current page tables cover only the first 2 MiB,
+                    so this should not be confused with a complete
+                    virtual-memory subsystem.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="grid grid-2">
+
+                <article class="card">
+                    <h3>Stack</h3>
+                    <p>
+                        Fixed-size 16 KiB stack allocated in
+                        <code>.bss</code>.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Heap</h3>
+                    <p>
+                        No heap or dynamic memory allocator is currently
+                        implemented.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Memory protection</h3>
+                    <p>
+                        Paging is enabled, but the current mappings are
+                        writable kernel mappings without user/kernel
+                        privilege separation.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Exceptions</h3>
+                    <p>
+                        No exception handlers are currently installed.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>VGA display</h2>
+
+                <p>
+                    BrackOS uses the traditional VGA text buffer at
+                    <code>0xB8000</code>. The display provides an
+                    80-by-25 text grid with colored characters.
+                </p>
+
+                <div class="code-block">
+<pre><code>Width:       80 characters
+Height:      25 lines
+Cells:       2000
+Foreground:  16 colors
+Background:  8 colors
+Buffer:      0xB8000</code></pre>
+                </div>
+
+                <p>
+                    Each display cell contains a character and an
+                    attribute byte. The kernel provides functions for
+                    printing characters and strings, clearing the screen,
+                    scrolling, changing colors, and handling backspace.
+                </p>
+
+                <p>
+                    Normal text is gray on black. The boot message uses
+                    bright white, the shell prompt is green, and unknown
+                    command errors are displayed in red.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Input</span>
+
+                <h2>PS/2 keyboard</h2>
+
+                <p>
+                    Keyboard input is handled by polling the PS/2
+                    controller rather than using interrupts.
+                </p>
+
+                <div class="code-block">
+<pre><code>Data port:    0x60
+Status port:  0x64
+Scancode set: 1</code></pre>
+                </div>
+
+                <p>
+                    The driver translates scancodes into characters and
+                    supports left and right Shift keys, allowing uppercase
+                    letters and shifted symbols.
+                </p>
+
+                <p class="mb-0">
+                    The polling loop uses the x86 <code>pause</code>
+                    instruction while waiting for input. Ctrl and Alt
+                    modifiers are not currently implemented.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Kernel structure</h2>
+
+                <div class="grid grid-2">
+
+                    <article class="card">
+                        <h3><code>boot.s</code></h3>
+                        <p>
+                            Multiboot2 header, kernel entry point,
+                            paging setup, GDT setup, and the transition
+                            from 32-bit protected mode to 64-bit long mode.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>kernel.c</code></h3>
+                        <p>
+                            Main kernel entry, shell loop, command
+                            parsing, line input, and string utilities.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>vga.c</code> / <code>vga.h</code></h3>
+                        <p>
+                            VGA text output, colors, screen clearing,
+                            scrolling, cursor handling, and backspace.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>keyboard.c</code> / <code>keyboard.h</code></h3>
+                        <p>
+                            PS/2 keyboard polling and scancode-to-ASCII
+                            translation.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>io.h</code></h3>
+                        <p>
+                            Low-level I/O helpers for port and MSR access.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>linker.ld</code></h3>
+                        <p>
+                            Defines the kernel entry point, load address,
+                            section layout, and alignment.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3><code>grub.cfg</code></h3>
+                        <p>
+                            GRUB boot configuration and Multiboot2 kernel
+                            loading.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Current state</span>
+
+                <h2>A small kernel with a lot of room to grow.</h2>
+
+                <p>
+                    BrackOS x64 currently provides the foundations needed
+                    to boot a 64-bit kernel, display text, receive keyboard
+                    input, and interact with a simple shell.
+                </p>
+
+                <p class="mb-0">
+                    Interrupts, exception handling, filesystems,
+                    networking, multitasking, dynamic memory, USB, and
+                    other larger OS subsystems remain outside the current
+                    implementation.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
