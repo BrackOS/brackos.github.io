@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documentation | BrackOS</title>
+
+    <meta
+        name="description"
+        content="Learn what an operating system is, why BrackOS exists, and explore its documentation."
+    >
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<main>
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge">BrackOS Documentation</span>
+
+            <h1>Start here.</h1>
+
+            <p class="lead">
+                Learn what an operating system actually does,
+                why BrackOS exists, and how the project works.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         WHAT IS AN OS?
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">The Basics</span>
+
+                <h2>What is an operating system?</h2>
+
+                <p>
+                    An operating system, or OS, is the software that
+                    sits between a computer's hardware and the programs
+                    that use it.
+                </p>
+
+                <p>
+                    When you turn on a computer, something has to
+                    initialize the processor, manage memory, communicate
+                    with hardware, and provide a way for software to
+                    actually run. An operating system provides the
+                    foundation for all of that.
+                </p>
+
+                <p>
+                    Windows, macOS, Linux, Android, and many other
+                    systems are operating systems. They can look very
+                    different, but underneath the user interface they
+                    all have to solve many of the same fundamental
+                    problems.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         WHY BUILD ONE?
+         ========================================================= -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Why BrackOS?</span>
+
+                <h2>Why build an operating system?</h2>
+
+                <p>
+                    Most people use an operating system without ever
+                    needing to think about what happens underneath it.
+                    BrackOS gives us an opportunity to work directly
+                    with those underlying systems.
+                </p>
+
+                <p>
+                    Building an operating system means dealing with
+                    things that are normally hidden behind layers of
+                    existing software: CPU modes, memory, bootloaders,
+                    hardware devices, assembly code, and the kernel
+                    itself.
+                </p>
+
+                <p class="mb-0">
+                    It's a difficult project, but that difficulty is
+                    part of the point. By building the system ourselves,
+                    we can learn how computers work at a much deeper
+                    level.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         HOW IT FITS TOGETHER
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <span class="badge">How It Works</span>
+
+            <h2>From power-on to programs</h2>
+
+            <div class="grid grid-3">
+
+                <article class="card">
+                    <h3>1. Hardware</h3>
+
+                    <p class="mb-0">
+                        The processor starts executing instructions
+                        according to the platform's boot process.
+                    </p>
+                </article>
+
+
+                <article class="card">
+                    <h3>2. Bootloader</h3>
+
+                    <p class="mb-0">
+                        A bootloader loads the operating system kernel
+                        and gives it the information it needs to begin
+                        running.
+                    </p>
+                </article>
+
+
+                <article class="card">
+                    <h3>3. Kernel</h3>
+
+                    <p class="mb-0">
+                        The kernel takes control of the system and
+                        provides the fundamental software layer that
+                        interacts with the hardware.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="grid grid-2 section-grid">
+
+                <article class="card">
+                    <h3>4. Drivers & Hardware</h3>
+
+                    <p class="mb-0">
+                        The operating system needs ways to communicate
+                        with devices such as keyboards, displays,
+                        storage, and other hardware.
+                    </p>
+                </article>
+
+
+                <article class="card">
+                    <h3>5. Programs</h3>
+
+                    <p class="mb-0">
+                        Software can then use the facilities provided
+                        by the operating system to perform useful work.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         BRACKOS TODAY
+         ========================================================= -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">BrackOS Today</span>
+
+                <h2>Starting small.</h2>
+
+                <p>
+                    BrackOS is currently a small kernel project. Its
+                    released x86 and x64 versions provide a foundation
+                    for further development, including booting the
+                    kernel, displaying text, receiving keyboard input,
+                    and providing a basic command shell.
+                </p>
+
+                <p class="mb-0">
+                    There is a lot left to build. That's intentional.
+                    BrackOS is a project that grows one subsystem at a
+                    time.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         EXPLORE
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Explore</span>
+
+                <h2>Want to go deeper?</h2>
+
+                <p>
+                    The architecture-specific documentation contains
+                    more detailed information about how the released
+                    versions of BrackOS work.
+                </p>
+
+                <div class="docs-links">
+
+                    <a href="../x86/index.html" class="button">
+                        Explore x86
+                    </a>
+
+                    <a href="../x64/index.html" class="button button-secondary">
+                        Explore x64
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
