@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrackOS x64 — Commands</title>
+
+    <meta
+        name="description"
+        content="Command reference for the BrackOS x64 shell."
+    >
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<main>
+
+    <!-- =========================================================
+         PAGE HEADER
+         ========================================================= -->
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge">Command Reference</span>
+
+            <h1>BrackOS x64 Commands</h1>
+
+            <p class="lead">
+                Everything currently available in the BrackOS command shell.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         COMMAND OVERVIEW
+         Add new commands to this grid when they are implemented.
+         ========================================================= -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="grid grid-3">
+
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>help</code></h3>
+                    <p class="mb-0">
+                        Displays all available commands.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>echo &lt;text&gt;</code></h3>
+                    <p class="mb-0">
+                        Prints text to the screen.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>clear</code></h3>
+                    <p class="mb-0">
+                        Clears the screen and returns the cursor to the top.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         HELP
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 01</span>
+
+                <h2><code>help</code></h2>
+
+                <p>
+                    Displays all commands currently available in the
+                    BrackOS shell.
+                </p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; help
+Available commands:
+  echo &lt;text&gt;   - print text to screen
+  clear         - clear the screen
+  help          - show this help message</code></pre>
+                </div>
+
+                <h3>Arguments</h3>
+
+                <p class="mb-0">
+                    <code>help</code> does not require any arguments.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         ECHO
+         ========================================================= -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 02</span>
+
+                <h2><code>echo &lt;text&gt;</code></h2>
+
+                <p>
+                    Prints the supplied text to the screen.
+                </p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; echo Hello World
+Hello World
+
+BrackOS&gt; echo This is BrackOS
+This is BrackOS</code></pre>
+                </div>
+
+                <h3>Without text</h3>
+
+                <p>
+                    Running <code>echo</code> without any text prints a
+                    blank line.
+                </p>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; echo
+
+BrackOS&gt;</code></pre>
+                </div>
+
+                <h3>Special characters</h3>
+
+                <p>
+                    Text can contain spaces, numbers, and special
+                    characters.
+                </p>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; echo test123!@#
+test123!@#</code></pre>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         CLEAR
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 03</span>
+
+                <h2><code>clear</code></h2>
+
+                <p>
+                    Clears the entire screen and moves the cursor back
+                    to the top-left corner.
+                </p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; clear</code></pre>
+                </div>
+
+                <h3>Effect</h3>
+
+                <p>
+                    The screen is erased and filled with the default
+                    black background. The cursor is reset to the
+                    top-left position.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         UNKNOWN COMMANDS
+         ========================================================= -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge badge-error">Error Handling</span>
+
+                <h2>Unknown commands</h2>
+
+                <p>
+                    If BrackOS does not recognize a command, it displays
+                    an error message in red and returns to the shell prompt.
+                </p>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; xyz
+error: unknown command: xyz
+
+BrackOS&gt;</code></pre>
+                </div>
+
+                <h3>Error behavior</h3>
+
+                <ul>
+                    <li>The error text is displayed in red.</li>
+                    <li>The exact text entered is included in the error.</li>
+                    <li>The text color returns to gray afterward.</li>
+                    <li>The cursor moves to the next line.</li>
+                    <li>A new green command prompt appears.</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         INPUT BEHAVIOR
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Shell behavior</h2>
+
+                <p>
+                    The shell has a few rules worth knowing when entering
+                    commands.
+                </p>
+
+                <div class="grid grid-2">
+
+                    <article class="card">
+                        <h3>Empty lines</h3>
+                        <p class="mb-0">
+                            Pressing Enter with nothing typed does nothing
+                            and returns to a new prompt.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Spaces only</h3>
+                        <p class="mb-0">
+                            A line containing only spaces is treated as
+                            empty.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Case sensitive</h3>
+                        <p class="mb-0">
+                            Commands must be entered in lowercase.
+                            <code>HELP</code> and <code>Help</code> are
+                            not valid commands.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Partial commands</h3>
+                        <p class="mb-0">
+                            Partial names do not match commands.
+                            <code>hel</code> and <code>clea</code> are
+                            invalid.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         INPUT LIMIT
+         ========================================================= -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Technical Detail</span>
+
+                <h2>Command length</h2>
+
+                <p>
+                    The shell uses a 256-character command buffer.
+                    Input is limited to 255 characters plus the
+                    terminating null character.
+                </p>
+
+                <p class="mb-0">
+                    Input longer than the available buffer is silently
+                    truncated.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         QUICK REFERENCE
+         Keep this table synchronized when adding commands.
+         ========================================================= -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Quick reference</h2>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Action</th>
+                                <th>Output</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><code>help</code></td>
+                                <td>List commands</td>
+                                <td>Displays available commands</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>echo &lt;text&gt;</code></td>
+                                <td>Print text</td>
+                                <td>Displays supplied text</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>clear</code></td>
+                                <td>Clear screen</td>
+                                <td>Blank screen, cursor at top</td>
+                            </tr>
+
+                            <tr>
+                                <td>Unknown</td>
+                                <td>Invalid command</td>
+                                <td>Red error message</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
