@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Brack OS is an open-source operating system built from the ground up. The x64 Canary is now available."
+  >
+
+  <title>Brack OS — x64 Canary Released</title>
+
+  <style>
+    :root {
+      --background: #07111f;
+      --background-light: #0b1728;
+      --card: rgba(16, 31, 51, 0.82);
+      --card-hover: rgba(20, 41, 66, 0.95);
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f1f6fc;
+      --muted: #9eafc3;
+      --blue: #4da3ff;
+      --cyan: #55d6e8;
+      --green: #55d68a;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 15% 5%,
+          rgba(77, 163, 255, 0.18),
+          transparent 34rem
+        ),
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(85, 214, 232, 0.12),
+          transparent 32rem
+        ),
+        var(--background);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 17, 31, 0.82);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    #navbar {
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 125px 0 100px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      width: 520px;
+      height: 520px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(77, 163, 255, 0.08);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      padding: 7px 13px;
+      border: 1px solid rgba(85, 214, 138, 0.25);
+      border-radius: 999px;
+      background: rgba(85, 214, 138, 0.07);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(85, 214, 138, 0.8);
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(3.2rem, 9vw, 6.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+    }
+
+    .gradient-text {
+      color: var(--blue);
+      background: linear-gradient(
+        135deg,
+        #ffffff 10%,
+        var(--blue) 50%,
+        var(--cyan) 90%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 28px auto 34px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .release-date {
+      margin-top: 22px;
+      color: rgba(158, 175, 195, 0.72);
+      font-size: 0.85rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 650;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #06111e;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.08);
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      letter-spacing: -0.035em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .release-card {
+      position: relative;
+      overflow: hidden;
+      padding: 38px;
+      border: 1px solid rgba(77, 163, 255, 0.22);
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(85, 214, 232, 0.13),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(16, 31, 51, 0.98),
+          rgba(10, 23, 39, 0.98)
+        );
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.18);
+    }
+
+    .release-card::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      bottom: -130px;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(77, 163, 255, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .release-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      letter-spacing: -0.045em;
+    }
+
+    .release-card p {
+      max-width: 720px;
+      margin: 0 0 26px;
+      color: var(--muted);
+    }
+
+    .release-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .badge strong {
+      color: var(--text);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 11px;
+      background: rgba(77, 163, 255, 0.12);
+      color: var(--cyan);
+      font-size: 1.2rem;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .status {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .status-card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(
+        145deg,
+        rgba(16, 31, 51, 0.95),
+        rgba(10, 23, 39, 0.95)
+      );
+    }
+
+    .status-card h3 {
+      margin-top: 0;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .status-row:last-child {
+      border-bottom: 0;
+    }
+
+    .status-row strong {
+      color: var(--text);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .active {
+      color: var(--green) !important;
+    }
+
+    .next-card {
+      padding: 34px;
+      border: 1px solid rgba(85, 214, 232, 0.16);
+      border-radius: 18px;
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(85, 214, 232, 0.09),
+          transparent 45%
+        ),
+        var(--background-light);
+    }
+
+    .next-label {
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .next-card h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.05em;
+    }
+
+    .next-card p {
+      max-width: 680px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .roadmap-item {
+      position: relative;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .roadmap-item::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(77, 163, 255, 0.7);
+    }
+
+    .roadmap-item.priority {
+      border-color: rgba(85, 214, 232, 0.24);
+      background: rgba(85, 214, 232, 0.045);
+    }
+
+    .roadmap-item.priority::before {
+      background: var(--cyan);
+      box-shadow: 0 0 16px rgba(85, 214, 232, 0.8);
+    }
+
+    .roadmap-item h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+
+    .roadmap-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .team-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .team-card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .team-card h3 {
+      margin: 0 0 5px;
+      font-size: 1.3rem;
+    }
+
+    .team-role {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .team-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      padding: 60px 30px;
+      border: 1px solid rgba(77, 163, 255, 0.18);
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(77, 163, 255, 0.14),
+          transparent 55%
+        ),
+        var(--background-light);
+      text-align: center;
+    }
+
+    .cta h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .cards,
+      .status,
+      .team-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding: 90px 0 65px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        padding: 70px 0 50px;
+      }
+
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .release-card,
+      .next-card,
+      .status-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div id="navbar"></div>
+  </nav>
+
+  <script>
+    fetch("/nav.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="eyebrow">x64 Canary Released</div>
+
+          <h1>
+            Brack OS<br>
+            <span class="gradient-text">has arrived.</span>
+          </h1>
+
+          <p>
+            The first Brack OS x64 Canary is now available.
+            A major milestone for the project — and the beginning of what's next.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary" href="/x64">
+              Explore the x64 Canary →
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS/x64-kernel"
+              target="_blank"
+              rel="noopener"
+            >
+              View the source
+            </a>
+
+            <a class="button" href="/roadmap">
+              View the roadmap
+            </a>
+          </div>
+
+          <div class="release-date">
+            Brack OS x64 Canary · September 20, 2026
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RELEASE -->
+
+    <section>
+      <div class="container">
+
+        <div class="release-card">
+
+          <div class="release-badges">
+            <span class="badge"><strong>x64</strong> architecture</span>
+            <span class="badge"><strong>Canary</strong> release</span>
+            <span class="badge"><strong>Open source</strong></span>
+          </div>
+
+          <h2>The first major milestone.</h2>
+
+          <p>
+            Brack OS began as an experiment in understanding how operating
+            systems work from the ground up. Today, that work has reached its
+            first x64 Canary release.
+          </p>
+
+          <p>
+            The Canary is an early build and the project is still evolving,
+            but Brack OS can now boot on real x64 hardware as well as in QEMU.
+          </p>
+
+          <div class="buttons" style="justify-content: flex-start;">
+            <a class="button primary" href="/x64">
+              Get the x64 Canary →
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS/x64-kernel"
+              target="_blank"
+              rel="noopener"
+            >
+              x64 GitHub
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHAT BRACK OS IS -->
+
+    <section id="project">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Built from the ground up.</h2>
+
+          <p>
+            Brack OS is an open-source operating system project focused on
+            learning, experimentation, and exploring computing from the lowest
+            levels upward.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="card-icon">◉</div>
+
+            <h3>Our own kernel</h3>
+
+            <p>
+              Brack OS is built around its own kernel rather than relying on
+              an existing operating system kernel.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">◇</div>
+
+            <h3>Open source</h3>
+
+            <p>
+              The source is available for people who want to explore the
+              project, follow development, or contribute.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">⬡</div>
+
+            <h3>More than one platform</h3>
+
+            <p>
+              x64 is the first major target, with ARM64 now becoming the
+              project's next priority.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CURRENT STATUS -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Where Brack OS stands.</h2>
+
+          <p>
+            The x64 Canary is out. Development continues, with the project
+            already looking toward its next architecture.
+          </p>
+        </div>
+
+        <div class="status">
+
+          <div class="status-card">
+
+            <h3>Project status</h3>
+
+            <div class="status-row">
+              <span>Current release</span>
+              <strong class="active">x64 Canary</strong>
+            </div>
+
+            <div class="status-row">
+              <span>Primary architecture</span>
+              <strong>x64</strong>
+            </div>
+
+            <div class="status-row">
+              <span>Real hardware</span>
+              <strong class="active">Supported</strong>
+            </div>
+
+            <div class="status-row">
+              <span>QEMU</span>
+              <strong class="active">Supported</strong>
+            </div>
+
+            <div class="status-row">
+              <span>Next priority</span>
+              <strong>ARM64</strong>
+            </div>
+
+          </div>
+
+          <div class="status-card">
+
+            <h3>What's next?</h3>
+
+            <p style="color: var(--muted);">
+              With the first x64 Canary released, development can begin
+              shifting toward the next major architecture target.
+            </p>
+
+            <div class="next-card" style="margin-top: 22px; padding: 24px;">
+
+              <div class="next-label">Next priority</div>
+
+              <h2>ARM64</h2>
+
+              <p style="margin-bottom: 0;">
+                ARM64 is the next major platform the Brack OS project plans
+                to focus on.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ARCHITECTURES -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>The road ahead.</h2>
+
+          <p>
+            x64 is no longer just the target — it's the first released Canary.
+            Other architectures remain part of the longer-term vision.
+          </p>
+        </div>
+
+        <div class="roadmap">
+
+          <div class="roadmap-item priority">
+            <h3>x64</h3>
+            <p>
+              First major target. Canary released.
+            </p>
+          </div>
+
+          <div class="roadmap-item priority">
+            <h3>ARM64</h3>
+            <p>
+              The next priority for platform development.
+            </p>
+          </div>
+
+          <div class="roadmap-item">
+            <h3>x86 / i386</h3>
+            <p>
+              A planned 32-bit architecture target.
+            </p>
+          </div>
+
+          <div class="roadmap-item">
+            <h3>ARM32 & more</h3>
+            <p>
+              Additional architectures remain part of the future roadmap.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="buttons" style="margin-top: 28px;">
+          <a class="button primary" href="/roadmap">
+            See the full roadmap →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TEAM -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>The people behind Brack OS.</h2>
+
+          <p>
+            A small team working together to move the project forward.
+          </p>
+        </div>
+
+        <div class="team-cards">
+
+          <div class="team-card">
+            <h3>Jack C.</h3>
+
+            <span class="team-role">CEO · Co-founder</span>
+
+            <p>
+              Leading the organization and helping guide the project as
+              Brack OS moves into its next stage.
+            </p>
+          </div>
+
+          <div class="team-card">
+            <h3>Brent R.</h3>
+
+            <span class="team-role">CTO · Co-founder</span>
+
+            <p>
+              Leading the project's technical direction and helping shape
+              the development of Brack OS.
+            </p>
+          </div>
+
+          <div class="team-card">
+            <h3>Jayden L.</h3>
+
+            <span class="team-role">Team Support</span>
+
+            <p>
+              Helping the team with the work needed to keep Brack OS moving
+              forward.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+
+    <section>
+      <div class="container">
+
+        <div class="cta">
+
+          <h2>Ready to see it?</h2>
+
+          <p>
+            Explore the x64 Canary, check out the source, and follow Brack OS
+            as development moves toward ARM64.
+          </p>
+
+          <div class="buttons">
+
+            <a class="button primary" href="/x64">
+              Explore x64 →
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS/x64-kernel"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+
+            <a class="button" href="/helpbrackos">
+              Get involved
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Brack OS · Open source · Under development
+    </div>
+  </footer>
+
+</body>
+</html>
