@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrackOS | Open-Source Operating System</title>
+
+    <meta
+        name="description"
+        content="BrackOS is an open-source operating system project built from the ground up."
+    >
+
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+<main>
+
+    <!-- =====================================================
+         Hero
+         ===================================================== -->
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge">Open-Source Operating System</span>
+
+            <h1>
+                An operating system.<br>
+                Built from the ground up.
+            </h1>
+
+            <p class="lead">
+                BrackOS is an open-source operating system project
+                built by a small team exploring low-level software,
+                hardware, and operating system development.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    class="button button-primary"
+                    href="docs/index.html"
+                >
+                    Explore BrackOS
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="https://github.com/BrackOS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View on GitHub
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         Current Releases
+         ===================================================== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge badge-success">Released</span>
+
+                <h2>BrackOS is running.</h2>
+
+                <p>
+                    x86 and x64 versions of BrackOS are available.
+                    Both are currently command-line based and focus
+                    on the low-level foundations of the operating system.
+                </p>
+
+            </div>
+
+
+            <div class="grid grid-2">
+
+                <!-- x64 -->
+
+                <article class="card card-hover">
+
+                    <span class="badge">x86-64</span>
+
+                    <h3>BrackOS x64</h3>
+
+                    <p>
+                        A 64-bit kernel running in long mode with
+                        paging, VGA text output, PS/2 keyboard input,
+                        and a simple command shell.
+                    </p>
+
+                    <p class="muted">
+                        CLI · GRUB 2 · Multiboot2
+                    </p>
+
+                    <a
+                        class="button button-primary button-small"
+                        href="docs/x64/index.html"
+                    >
+                        Explore x64
+                    </a>
+
+                </article>
+
+
+                <!-- x86 -->
+
+                <article class="card card-hover">
+
+                    <span class="badge">x86</span>
+
+                    <h3>BrackOS x86</h3>
+
+                    <p>
+                        The 32-bit version of BrackOS, providing the
+                        same core command-line experience on x86 hardware.
+                    </p>
+
+                    <p class="muted">
+                        CLI · GRUB 2 · Multiboot
+                    </p>
+
+                    <a
+                        class="button button-primary button-small"
+                        href="docs/x86/index.html"
+                    >
+                        Explore x86
+                    </a>
+
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         What is BrackOS?
+         ===================================================== -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card reading-width">
+
+                <span class="badge">The Project</span>
+
+                <h2>Why BrackOS?</h2>
+
+                <p>
+                    Operating systems are the software layer between
+                    hardware and the programs that run on it. They
+                    manage resources, communicate with hardware, and
+                    provide the foundations that applications depend on.
+                </p>
+
+                <p>
+                    BrackOS is our attempt to understand those foundations
+                    by building them ourselves. That means working close
+                    to the processor, memory, boot process, and hardware
+                    instead of hiding those details behind an existing
+                    operating system.
+                </p>
+
+                <p class="mb-0">
+                    It's an ongoing project, and there's plenty left
+                    to build.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         Architecture
+         ===================================================== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Architectures</span>
+
+                <h2>More architectures are planned.</h2>
+
+                <p>
+                    x86 and x64 are currently released. ARM support is
+                    planned, but those versions are not released yet.
+                </p>
+
+            </div>
+
+
+            <div class="grid grid-2">
+
+                <article class="card">
+
+                    <span class="badge badge-warning">Not Released</span>
+
+                    <h3>ARM64</h3>
+
+                    <p class="mb-0">
+                        ARM64 development is planned for a future
+                        version of BrackOS.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <span class="badge badge-warning">Not Released</span>
+
+                    <h3>ARM32</h3>
+
+                    <p class="mb-0">
+                        ARM32 development is planned for a future
+                        version of BrackOS.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         Development
+         ===================================================== -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="grid grid-3">
+
+                <article class="card card-hover">
+
+                    <span class="badge">Documentation</span>
+
+                    <h3>Learn how it works.</h3>
+
+                    <p>
+                        Explore the architecture, boot process,
+                        hardware interfaces, shell, and other
+                        technical details.
+                    </p>
+
+                    <a href="docs/index.html">
+                        Read the documentation →
+                    </a>
+
+                </article>
+
+
+                <article class="card card-hover">
+
+                    <span class="badge">Development</span>
+
+                    <h3>Follow the project.</h3>
+
+                    <p>
+                        Read development updates, announcements,
+                        technical posts, and other news from BrackOS.
+                    </p>
+
+                    <a href="blog/index.html">
+                        Read the blog →
+                    </a>
+
+                </article>
+
+
+                <article class="card card-hover">
+
+                    <span class="badge">Community</span>
+
+                    <h3>Help build it.</h3>
+
+                    <p>
+                        BrackOS is open source. Developers, testers,
+                        writers, and others can contribute to the project.
+                    </p>
+
+                    <a href="docs/work-with-us.html">
+                        Work with us →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         Project Links
+         ===================================================== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">BrackOS</span>
+
+                <h2>Keep exploring.</h2>
+
+                <p>
+                    There's more to the project than the kernel.
+                    Learn about the people behind BrackOS, follow
+                    the roadmap, or support the project.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        class="button button-secondary button-small"
+                        href="docs/about.html"
+                    >
+                        About the Developers
+                    </a>
+
+                    <a
+                        class="button button-secondary button-small"
+                        href="docs/roadmap.html"
+                    >
+                        Roadmap
+                    </a>
+
+                    <a
+                        class="button button-secondary button-small"
+                        href="docs/donations.html"
+                    >
+                        Support BrackOS
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         Closing
+         ===================================================== -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card reading-width text-center">
+
+                <span class="badge">Built Openly</span>
+
+                <h2>We're just getting started.</h2>
+
+                <p class="mb-0">
+                    BrackOS is being built one piece at a time.
+                    Follow along as the project grows.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
