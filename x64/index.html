@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BrackOS for x64</title>
+
+    <meta
+        name="description"
+        content="BrackOS for x64 — a minimal operating system kernel built from scratch."
+    >
+
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <nav class="nav container">
+        <a class="nav-brand" href="../index.html">
+            <span class="nav-brand-mark" aria-hidden="true"></span>
+            BrackOS
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../x86/">x86</a></li>
+            <li><a href="../x64/" aria-current="page">x64</a></li>
+            <li><a href="../low-level/">Low-Level</a></li>
+            <li><a href="../getting-started/">Get Started</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="container hero-content">
+
+            <span class="badge badge-success">Released</span>
+
+            <h1>BrackOS for x64</h1>
+
+            <p class="lead">
+                A minimal operating system kernel built from scratch
+                for 64-bit x86 systems.
+            </p>
+
+            <div class="hero-actions">
+                <a
+                    class="button button-primary"
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Download ISO
+                </a>
+
+                <a
+                    class="button button-secondary"
+                    href="https://github.com/BrackOS/x64-kernel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Source
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="grid grid-3">
+
+                <article class="card">
+                    <span class="badge">Architecture</span>
+                    <h3>x86-64</h3>
+                    <p class="mb-0">
+                        BrackOS runs as a 64-bit x86 kernel.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">Boot</span>
+                    <h3>BIOS &amp; UEFI</h3>
+                    <p class="mb-0">
+                        The release supports booting through both BIOS
+                        and UEFI configurations.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <span class="badge">License</span>
+                    <h3>MIT</h3>
+                    <p class="mb-0">
+                        BrackOS is open source and released under the
+                        MIT License.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>What's included?</h2>
+
+                <p class="lead">
+                    The x64 release provides a small but functional
+                    kernel with basic hardware interaction and a command
+                    shell.
+                </p>
+
+                <div class="grid grid-2">
+
+                    <article class="card">
+                        <h3>VGA display</h3>
+                        <p class="mb-0">
+                            BrackOS uses VGA text mode for its display,
+                            including text colors, scrolling, and
+                            backspace handling.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Keyboard input</h3>
+                        <p class="mb-0">
+                            A PS/2 keyboard driver handles keyboard
+                            input and basic shift-key support.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Command shell</h3>
+                        <p class="mb-0">
+                            The kernel includes a simple interactive
+                            shell for running built-in commands.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>GRUB boot</h3>
+                        <p class="mb-0">
+                            BrackOS uses GRUB with Multiboot support
+                            to load the kernel.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <span class="badge">Current limitations</span>
+
+                <h2>Still under development</h2>
+
+                <p>
+                    BrackOS is a developing operating system. The
+                    current kernel does not yet provide many facilities
+                    normally expected from a general-purpose operating
+                    system.
+                </p>
+
+                <ul>
+                    <li>No filesystem</li>
+                    <li>No multitasking</li>
+                    <li>No networking</li>
+                    <li>No virtual memory</li>
+                    <li>PS/2 keyboard input</li>
+                </ul>
+
+                <p class="mb-0">
+                    See the low-level documentation for more information
+                    about the current implementation and its limitations.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="card">
+
+                <h2>Want to see how it works?</h2>
+
+                <p>
+                    Explore the low-level documentation to learn how
+                    BrackOS boots, initializes the kernel, communicates
+                    with hardware, and handles input and display.
+                </p>
+
+                <a class="button button-primary" href="../low-level/">
+                    Read the low-level docs
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="container footer-content">
+
+        <div>
+            <strong>BrackOS</strong>
+            <p class="mb-0">
+                An operating system built from scratch.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a href="../x86/">x86</a>
+            <a href="../low-level/">Low-Level Docs</a>
+            <a href="../getting-started/">Get Started</a>
+            <a
+                href="https://github.com/BrackOS/x64-kernel"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub
+            </a>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
