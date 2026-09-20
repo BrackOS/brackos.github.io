@@ -3,116 +3,914 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Information about the Brack OS x64 kernel.">
-  <title>Brack OS — x64 Kernel</title>
-  <link rel="stylesheet" href="/assets/styles.css">
+
+  <meta
+    name="description"
+    content="Brack OS x64 Kernel — the first x64 Canary release is here. Download it, boot it, and explore the project."
+  >
+
+  <title>Brack OS x64 Kernel</title>
+
+  <style>
+    :root {
+      --background: #07111f;
+      --background-light: #0b1728;
+      --card: rgba(16, 31, 51, 0.82);
+      --card-hover: rgba(20, 41, 66, 0.95);
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f1f6fc;
+      --muted: #9eafc3;
+      --blue: #4da3ff;
+      --cyan: #55d6e8;
+      --green: #55d68a;
+      --yellow: #ffd166;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 15% 8%,
+          rgba(77, 163, 255, 0.16),
+          transparent 32rem
+        ),
+        radial-gradient(
+          circle at 85% 18%,
+          rgba(85, 214, 232, 0.1),
+          transparent 30rem
+        ),
+        var(--background);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 17, 31, 0.82);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    #navbar {
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 90px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      width: 520px;
+      height: 520px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(77, 163, 255, 0.09);
+      filter: blur(85px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      padding: 7px 13px;
+      border: 1px solid rgba(85, 214, 138, 0.26);
+      border-radius: 999px;
+      background: rgba(85, 214, 138, 0.07);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 13px rgba(85, 214, 138, 0.85);
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+    }
+
+    .gradient-text {
+      color: var(--blue);
+      background: linear-gradient(
+        135deg,
+        #ffffff 10%,
+        var(--blue) 50%,
+        var(--cyan) 90%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 28px auto 34px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .release-date {
+      margin-top: 20px;
+      color: rgba(158, 175, 195, 0.72);
+      font-size: 0.85rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 650;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #06111e;
+    }
+
+    .button.primary:hover {
+      filter: brightness(1.08);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      letter-spacing: -0.035em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .release-card {
+      position: relative;
+      overflow: hidden;
+      padding: 38px;
+      border: 1px solid rgba(77, 163, 255, 0.23);
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(85, 214, 232, 0.13),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(16, 31, 51, 0.98),
+          rgba(10, 23, 39, 0.98)
+        );
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.18);
+    }
+
+    .release-card h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      letter-spacing: -0.045em;
+    }
+
+    .release-card p {
+      max-width: 720px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .release-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.035);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .badge strong {
+      color: var(--text);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      border-radius: 11px;
+      background: rgba(77, 163, 255, 0.12);
+      color: var(--cyan);
+      font-size: 1.2rem;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .info-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 24px;
+      border: 1px solid rgba(255, 209, 102, 0.18);
+      border-radius: 16px;
+      background: rgba(255, 209, 102, 0.045);
+    }
+
+    .warning-icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 209, 102, 0.1);
+      color: var(--yellow);
+    }
+
+    .warning h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+
+    .warning p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .next-card {
+      padding: 34px;
+      border: 1px solid rgba(85, 214, 232, 0.17);
+      border-radius: 18px;
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(85, 214, 232, 0.09),
+          transparent 45%
+        ),
+        var(--background-light);
+    }
+
+    .next-label {
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .next-card h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.05em;
+    }
+
+    .next-card p {
+      max-width: 680px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding: 60px 30px;
+      border: 1px solid rgba(77, 163, 255, 0.18);
+      border-radius: 20px;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(77, 163, 255, 0.14),
+          transparent 55%
+        ),
+        var(--background-light);
+      text-align: center;
+    }
+
+    .cta h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .cards,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 90px 0 65px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        padding: 70px 0 50px;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .release-card,
+      .next-card {
+        padding: 24px;
+      }
+
+      .warning {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div id="navbar"></div>
 
-<script>
-  fetch("/nav.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("navbar").innerHTML = data;
-    });
-</script>
+  <nav>
+    <div id="navbar"></div>
+  </nav>
 
+  <script>
+    fetch("/nav.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
 
-  <section class="page-hero">
-    <div class="container">
-      <div class="eyebrow">Architecture / x86-64</div>
-      <h1>The x64 kernel</h1>
-      <p>
-        The primary development target for Brack OS and the foundation
-        we're currently building the system around.
-      </p>
-    </div>
-  </section>
+  <main>
 
-  <section class="page">
-    <div class="container content">
+    <!-- HERO -->
 
-      <div class="notice">
-        <strong>Current focus</strong>
-        <p>
-          x64 is currently the highest-priority architecture for Brack OS development.
-        </p>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="eyebrow">x64 Canary Release</div>
+
+          <h1>
+            Brack OS<br>
+            <span class="gradient-text">x64 is here.</span>
+          </h1>
+
+          <p>
+            The first Brack OS x64 release is now available.
+            A major milestone for the project — and the beginning
+            of the next chapter.
+          </p>
+
+          <div class="buttons">
+
+            <a
+              class="button primary"
+              href="https://example.com/"
+              target="_blank"
+              rel="noopener"
+            >
+              Download the release →
+            </a>
+
+            <a class="button" href="#getting-started">
+              How to boot
+            </a>
+
+          </div>
+
+          <div class="release-date">
+            Brack OS x64 Kernel · Canary Release · September 20, 2026
+          </div>
+
+        </div>
       </div>
+    </section>
 
-      <div class="content-section">
-        <h2>Where things stand</h2>
-        <p>
-          Development of the x64 kernel is ongoing. The project is still too early
-          for a public canary release, but the goal is to reach that point soon.
-        </p>
-        <p>
-          We are currently aiming for a canary build around September 20, 2026,
-          followed by a hoped-for version 0.1 release around October 15, 2026.
-          These dates are goals rather than guarantees.
-        </p>
+
+    <!-- RELEASE -->
+
+    <section>
+      <div class="container">
+
+        <div class="release-card">
+
+          <div class="release-badges">
+            <span class="badge"><strong>x64</strong> architecture</span>
+            <span class="badge"><strong>Canary</strong> build</span>
+            <span class="badge"><strong>Open source</strong></span>
+          </div>
+
+          <h2>Our first x64 release.</h2>
+
+          <p>
+            Brack OS x64 is the project's current primary architecture,
+            and this release marks an important step from development
+            toward something people can actually boot and try.
+          </p>
+
+          <p>
+            It can boot on real x64 hardware and can also be run through
+            QEMU. This is an early build, so Brack OS will continue to
+            change and improve as development moves forward.
+          </p>
+
+          <div class="buttons" style="justify-content: flex-start;">
+
+            <a
+              class="button primary"
+              href="https://example.com/"
+              target="_blank"
+              rel="noopener"
+            >
+              Download Brack OS x64
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS/x64-kernel/blob/main/README.md"
+              target="_blank"
+              rel="noopener"
+            >
+              Boot instructions
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
+    </section>
 
-      <div class="content-section">
-        <h2>What comes next?</h2>
+
+    <!-- WHAT IT IS -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>So, what is it?</h2>
+
+          <p>
+            Brack OS x64 is the current foundation of the project:
+            an operating system kernel being built from the ground up.
+          </p>
+
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+
+            <div class="card-icon">◉</div>
+
+            <h3>Built from scratch</h3>
+
+            <p>
+              Brack OS is an independent operating system project,
+              built to explore how the pieces of an operating system
+              come together.
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <div class="card-icon">◇</div>
+
+            <h3>Runs on real hardware</h3>
+
+            <p>
+              The x64 build can boot on real x64 machines as well
+              as in a virtualized QEMU environment.
+            </p>
+
+          </div>
+
+          <div class="card">
+
+            <div class="card-icon">⬡</div>
+
+            <h3>Still growing</h3>
+
+            <p>
+              This is an early development build, not the finished
+              operating system. There is plenty more to build as
+              Brack OS develops.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- EARLY RELEASE -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>An early look at Brack OS.</h2>
+
+          <p>
+            This release is an important milestone, but it is still
+            very much a work in progress.
+          </p>
+
+        </div>
+
+        <div class="warning">
+
+          <div class="warning-icon">!</div>
+
+          <div>
+
+            <h3>Early software</h3>
+
+            <p>
+              This is an experimental development build. Things may be
+              incomplete, change over time, or not work exactly as expected.
+              That's part of releasing early and continuing to build from there.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- GETTING STARTED -->
+
+    <section id="getting-started">
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>Ready to try it?</h2>
+
+          <p>
+            Download the release and follow the boot instructions
+            from the x64 kernel repository.
+          </p>
+
+        </div>
 
         <div class="info-grid">
+
           <div class="info-card">
-            <h3>Kernel development</h3>
+
+            <h3>1. Download</h3>
+
             <p>
-              Continue improving the core of the operating system and resolving bugs
-              as development progresses.
+              Grab the current x64 build and get ready to boot
+              Brack OS.
             </p>
+
+            <div style="margin-top: 20px;">
+              <a
+                class="button primary"
+                href="https://example.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                Download →
+              </a>
+            </div>
+
           </div>
 
           <div class="info-card">
-            <h3>Hardware support</h3>
+
+            <h3>2. Follow the guide</h3>
+
             <p>
-              Expand driver and hardware support so the system can become useful
-              on a wider range of machines.
+              The x64 kernel repository contains the current instructions
+              for building and booting Brack OS.
             </p>
+
+            <div style="margin-top: 20px;">
+              <a
+                class="button"
+                href="https://github.com/BrackOS/x64-kernel/blob/main/README.md"
+                target="_blank"
+                rel="noopener"
+              >
+                Read the boot guide →
+              </a>
+            </div>
+
           </div>
 
-          <div class="info-card">
-            <h3>Canary release</h3>
-            <p>
-              Once the kernel reaches a suitable level of stability, a public
-              experimental build can be made available.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3>Long-term goal</h3>
-            <p>
-              x64 is only the beginning. The larger goal is a complete operating
-              system with support for multiple architectures.
-            </p>
-          </div>
         </div>
+
       </div>
+    </section>
 
-      <div class="content-section">
-        <h2>Get the source</h2>
-        <p>
-          When builds become available, the source code will be available through
-          the Brack OS GitHub repository.
-        </p>
 
-        <div class="link-row">
-          <a class="button primary" href="https://github.com/BrackOS" target="_blank" rel="noopener">View GitHub</a>
-          <a class="button" href="/">Back to Brack OS</a>
+    <!-- SOURCE -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>Open source. Open to explore.</h2>
+
+          <p>
+            Want to see what makes the x64 kernel tick?
+            The source is available on GitHub.
+          </p>
+
         </div>
-      </div>
 
+        <div class="next-card">
+
+          <div class="next-label">Brack OS x64 Kernel</div>
+
+          <h2>See the source.</h2>
+
+          <p>
+            The x64 kernel has its own repository where development,
+            source code, and technical information live.
+          </p>
+
+          <div class="buttons" style="justify-content: flex-start;">
+
+            <a
+              class="button primary"
+              href="https://github.com/BrackOS/x64-kernel/"
+              target="_blank"
+              rel="noopener"
+            >
+              View x64 on GitHub →
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS/x64-kernel/blob/main/README.md"
+              target="_blank"
+              rel="noopener"
+            >
+              Read the README
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHAT'S NEXT -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>This is only the beginning.</h2>
+
+          <p>
+            Getting x64 to this point is a milestone, not the finish line.
+          </p>
+
+        </div>
+
+        <div class="next-card">
+
+          <div class="next-label">Next priority</div>
+
+          <h2>ARM64</h2>
+
+          <p>
+            With x64 reaching its first release, ARM64 is the next
+            priority for Brack OS development. The project is continuing
+            to expand toward more architectures while working toward
+            a more complete operating system.
+          </p>
+
+          <div class="buttons" style="justify-content: flex-start;">
+
+            <a class="button primary" href="/roadmap">
+              See what's next →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FINAL CTA -->
+
+    <section>
+      <div class="container">
+
+        <div class="cta">
+
+          <h2>Welcome to Brack OS x64.</h2>
+
+          <p>
+            Download the release, boot it, explore the source,
+            and follow along as Brack OS grows.
+          </p>
+
+          <div class="buttons">
+
+            <a
+              class="button primary"
+              href="https://example.com/"
+              target="_blank"
+              rel="noopener"
+            >
+              Download
+            </a>
+
+            <a
+              class="button"
+              href="https://github.com/BrackOS/x64-kernel/"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+
+            <a class="button" href="/">
+              Back to Brack OS
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Brack OS · Open source · Under development
     </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    Brack OS · Open source · Under development
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
