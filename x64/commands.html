@@ -18,10 +18,6 @@
 
 <main>
 
-    <!-- =========================================================
-         PAGE HEADER
-         ========================================================= -->
-
     <section class="hero">
         <div class="container hero-content">
 
@@ -31,55 +27,95 @@
 
             <p class="lead">
                 Everything currently available in the BrackOS command shell.
+                14 commands in BrackOS v1.1.
             </p>
 
         </div>
     </section>
 
 
-    <!-- =========================================================
-         COMMAND OVERVIEW
-         Add new commands to this grid when they are implemented.
-         ========================================================= -->
+    <!-- COMMAND OVERVIEW: add new commands to this grid when implemented. -->
 
     <section class="section-small">
         <div class="container">
 
             <div class="grid grid-3">
-
                 <article class="card">
                     <span class="badge">Command</span>
                     <h3><code>help</code></h3>
-                    <p class="mb-0">
-                        Displays all available commands.
-                    </p>
+                    <p class="mb-0">Displays all available commands.</p>
                 </article>
-
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>info</code></h3>
+                    <p class="mb-0">Shows system information.</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>cpu</code></h3>
+                    <p class="mb-0">Shows CPU information and mode.</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>mem</code></h3>
+                    <p class="mb-0">Shows the memory layout.</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>ver</code></h3>
+                    <p class="mb-0">Shows kernel version and build.</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>credits</code></h3>
+                    <p class="mb-0">Shows project info and credits.</p>
+                </article>
                 <article class="card">
                     <span class="badge">Command</span>
                     <h3><code>echo &lt;text&gt;</code></h3>
-                    <p class="mb-0">
-                        Prints text to the screen.
-                    </p>
+                    <p class="mb-0">Prints text to the screen.</p>
                 </article>
-
                 <article class="card">
                     <span class="badge">Command</span>
                     <h3><code>clear</code></h3>
-                    <p class="mb-0">
-                        Clears the screen and returns the cursor to the top.
-                    </p>
+                    <p class="mb-0">Clears the screen and returns the cursor to the top.</p>
                 </article>
-
+                <article class="card">
+                    <span class="badge">Placeholder</span>
+                    <h3><code>time</code></h3>
+                    <p class="mb-0">System time (placeholder).</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Placeholder</span>
+                    <h3><code>uptime</code></h3>
+                    <p class="mb-0">System uptime (placeholder).</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Placeholder</span>
+                    <h3><code>date</code></h3>
+                    <p class="mb-0">Current date and time (placeholder).</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>repeat &lt;n&gt; &lt;cmd&gt;</code></h3>
+                    <p class="mb-0">Runs a command multiple times.</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>shutdown</code></h3>
+                    <p class="mb-0">Halts the CPU.</p>
+                </article>
+                <article class="card">
+                    <span class="badge">Command</span>
+                    <h3><code>reboot</code></h3>
+                    <p class="mb-0">Restarts the system.</p>
+                </article>
             </div>
 
         </div>
     </section>
 
-
-    <!-- =========================================================
-         HELP
-         ========================================================= -->
+    <!-- ===== SYSTEM INFORMATION ===== -->
 
     <section class="section">
         <div class="container">
@@ -87,39 +123,34 @@
             <div class="reading-width">
 
                 <span class="badge">Command 01</span>
+                <span class="badge">System Information</span>
 
                 <h2><code>help</code></h2>
 
-                <p>
-                    Displays all commands currently available in the
-                    BrackOS shell.
-                </p>
+                <p>Displays all available commands with brief descriptions.</p>
 
                 <h3>Usage</h3>
 
                 <div class="code-block">
 <pre><code>BrackOS&gt; help
 Available commands:
+  help          - show this help message
   echo &lt;text&gt;   - print text to screen
   clear         - clear the screen
-  help          - show this help message</code></pre>
+  info          - show system information
+  mem           - show memory layout
+  cpu           - show CPU information
+  ...and more</code></pre>
                 </div>
 
-                <h3>Arguments</h3>
+                <h3>Use case</h3>
 
-                <p class="mb-0">
-                    <code>help</code> does not require any arguments.
-                </p>
+                <p class="mb-0">Get a list of all commands at any time.</p>
 
             </div>
 
         </div>
     </section>
-
-
-    <!-- =========================================================
-         ECHO
-         ========================================================= -->
 
     <section class="section-small">
         <div class="container">
@@ -127,57 +158,34 @@ Available commands:
             <div class="reading-width">
 
                 <span class="badge">Command 02</span>
+                <span class="badge">System Information</span>
 
-                <h2><code>echo &lt;text&gt;</code></h2>
+                <h2><code>info</code></h2>
 
-                <p>
-                    Prints the supplied text to the screen.
-                </p>
+                <p>Shows detailed system information about BrackOS.</p>
 
                 <h3>Usage</h3>
 
                 <div class="code-block">
-<pre><code>BrackOS&gt; echo Hello World
-Hello World
-
-BrackOS&gt; echo This is BrackOS
-This is BrackOS</code></pre>
+<pre><code>BrackOS&gt; info
+BrackOS x86-64 Kernel
+Architecture: x86-64 (AMD64)
+CPU Mode: 64-bit Long Mode
+Boot: Multiboot2
+Memory: 16KB stack (0x100000 - 0x104000)
+Display: VGA 80x25 text mode (0xB8000)
+Input: PS/2 keyboard
+Bootloader: GRUB 2</code></pre>
                 </div>
 
-                <h3>Without text</h3>
+                <h3>Use case</h3>
 
-                <p>
-                    Running <code>echo</code> without any text prints a
-                    blank line.
-                </p>
-
-                <div class="code-block">
-<pre><code>BrackOS&gt; echo
-
-BrackOS&gt;</code></pre>
-                </div>
-
-                <h3>Special characters</h3>
-
-                <p>
-                    Text can contain spaces, numbers, and special
-                    characters.
-                </p>
-
-                <div class="code-block">
-<pre><code>BrackOS&gt; echo test123!@#
-test123!@#</code></pre>
-                </div>
+                <p class="mb-0">Learn what this operating system is and its key features.</p>
 
             </div>
 
         </div>
     </section>
-
-
-    <!-- =========================================================
-         CLEAR
-         ========================================================= -->
 
     <section class="section">
         <div class="container">
@@ -185,13 +193,179 @@ test123!@#</code></pre>
             <div class="reading-width">
 
                 <span class="badge">Command 03</span>
+                <span class="badge">System Information</span>
+
+                <h2><code>cpu</code></h2>
+
+                <p>Displays CPU information and the current mode.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; cpu
+CPU Information:
+  Instruction Set: x86-64 (AMD64)
+  Mode: 64-bit Long Mode
+  Paging: Enabled (2MB pages, PML4/PDPT/PDT hierarchy)
+  PAE: Enabled (Physical Address Extension)
+  GDT: Loaded (3 segments: null, code, data)
+  IDT: Not implemented
+  Interrupts: Disabled
+  Exception Handling: None</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Debug and understand CPU state. Useful for kernel developers.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 04</span>
+                <span class="badge">System Information</span>
+
+                <h2><code>mem</code></h2>
+
+                <p>Shows the memory layout and address space organization.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; mem
+Memory Layout:
+  Kernel base:    0x0100000 (1 MB)
+  Stack start:    0x0100000
+  Stack size:     16 KB
+  Stack top:      0x0104000
+  VGA buffer:     0x00B8000
+  Total mapped:   2 MB (identity-mapped pages)
+  Page tables:    PML4, PDPT, PDT (4KB each)</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Understand memory organization and page table structure.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 05</span>
+                <span class="badge">System Information</span>
+
+                <h2><code>ver</code></h2>
+
+                <p>Displays kernel version and build information.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; ver
+BrackOS Kernel v1.1
+Architecture: x86-64 (AMD64)
+Build: x86_64-unknown-linux-gnu
+Bootloader: GRUB 2 (Multiboot2)</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Verify which version of BrackOS is running.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 06</span>
+                <span class="badge">System Information</span>
+
+                <h2><code>credits</code></h2>
+
+                <p>Shows project information and credits.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; credits
+BrackOS - Minimal x86-64 Operating System
+Architecture: 64-bit x86-64 (AMD64)
+Bootloader: GRUB 2 (Multiboot2)
+Features: VGA text, PS/2 keyboard, simple shell
+License: Educational / Open Source
+Repository: https://github.com/brackos</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Learn about the project, licensing, and where to find the source code.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== OUTPUT ===== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 07</span>
+                <span class="badge">Output</span>
+
+                <h2><code>echo &lt;text&gt;</code></h2>
+
+                <p>Prints the supplied text to the screen. With no text, it prints a blank line.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; echo Hello BrackOS!
+Hello BrackOS!
+
+BrackOS&gt; echo
+</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Display messages and feedback.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 08</span>
+                <span class="badge">Output</span>
 
                 <h2><code>clear</code></h2>
 
-                <p>
-                    Clears the entire screen and moves the cursor back
-                    to the top-left corner.
-                </p>
+                <p>Clears the entire screen and moves the cursor to the top-left corner.</p>
 
                 <h3>Usage</h3>
 
@@ -199,25 +373,205 @@ test123!@#</code></pre>
 <pre><code>BrackOS&gt; clear</code></pre>
                 </div>
 
-                <h3>Effect</h3>
+                <h3>Use case</h3>
 
-                <p>
-                    The screen is erased and filled with the default
-                    black background. The cursor is reset to the
-                    top-left position.
-                </p>
+                <p class="mb-0">Clean up the display for a fresh start.</p>
 
             </div>
 
         </div>
     </section>
 
+    <!-- ===== TIME &AMP; MONITORING ===== -->
 
-    <!-- =========================================================
-         UNKNOWN COMMANDS
-         ========================================================= -->
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 09</span> <span class="badge">Placeholder</span>
+                <span class="badge">Time &amp; Monitoring</span>
+
+                <h2><code>time</code></h2>
+
+                <p>Shows system time information.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; time
+System Time:
+  Real-time Clock: Not implemented
+  Timer: Not implemented
+  Note: Requires RTC driver or system timer</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Future support for system timers and clocks.</p>
+
+            </div>
+
+        </div>
+    </section>
 
     <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 10</span> <span class="badge">Placeholder</span>
+                <span class="badge">Time &amp; Monitoring</span>
+
+                <h2><code>uptime</code></h2>
+
+                <p>Shows system uptime.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; uptime
+System Uptime:
+  Timer: Not implemented
+  Uptime calculation: Requires system timer
+  Note: No real-time clock available yet</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Future support for uptime tracking.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 11</span> <span class="badge">Placeholder</span>
+                <span class="badge">Time &amp; Monitoring</span>
+
+                <h2><code>date</code></h2>
+
+                <p>Shows the current date and time.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; date
+Current Date/Time:
+  Real-Time Clock: Not implemented
+  System clock: Not available
+  Note: Requires CMOS RTC or system timer</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Future support for date and time via the CMOS RTC.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== ADVANCED ===== -->
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 12</span>
+                <span class="badge">Advanced</span>
+
+                <h2><code>repeat &lt;n&gt; &lt;cmd&gt;</code></h2>
+
+                <p>Executes a command multiple times. Currently only <code>echo</code> is supported.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; repeat 3 echo BrackOS
+BrackOS
+BrackOS
+BrackOS</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Testing and demos. <code>&lt;n&gt;</code> is the repetition count (1-100); <code>&lt;cmd&gt;</code> is the command to repeat.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SYSTEM CONTROL ===== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 13</span>
+                <span class="badge">System Control</span>
+
+                <h2><code>shutdown</code></h2>
+
+                <p>Halts the system by executing the CPU <code>HLT</code> instruction. The system cannot resume without a power cycle, and no state is saved.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; shutdown
+Shutting down...
+[CPU halts]</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Clean system shutdown without power-off.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section-small">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <span class="badge">Command 14</span>
+                <span class="badge">System Control</span>
+
+                <h2><code>reboot</code></h2>
+
+                <p>Restarts the system by sending a reset command to the keyboard controller (port <code>0x64</code>), causing a warm restart.</p>
+
+                <h3>Usage</h3>
+
+                <div class="code-block">
+<pre><code>BrackOS&gt; reboot
+Rebooting...
+[System restarts from bootloader]</code></pre>
+                </div>
+
+                <h3>Use case</h3>
+
+                <p class="mb-0">Restart for applying changes or recovery.</p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== UNKNOWN COMMANDS ===== -->
+
+    <section class="section">
         <div class="container">
 
             <div class="reading-width">
@@ -248,17 +602,20 @@ BrackOS&gt;</code></pre>
                     <li>A new green command prompt appears.</li>
                 </ul>
 
+                <p class="mb-0">
+                    <code>repeat</code> with an unsupported command
+                    (anything other than <code>echo</code>) produces no output.
+                </p>
+
             </div>
 
         </div>
     </section>
 
 
-    <!-- =========================================================
-         INPUT BEHAVIOR
-         ========================================================= -->
+    <!-- ===== SHELL BEHAVIOR ===== -->
 
-    <section class="section">
+    <section class="section-small">
         <div class="container">
 
             <div class="reading-width">
@@ -314,9 +671,38 @@ BrackOS&gt;</code></pre>
     </section>
 
 
-    <!-- =========================================================
-         INPUT LIMIT
-         ========================================================= -->
+    <!-- ===== KEYBOARD ===== -->
+
+    <section class="section">
+        <div class="container">
+
+            <div class="reading-width">
+
+                <h2>Keyboard shortcuts</h2>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>Enter</code></td><td>Execute command</td></tr>
+                            <tr><td><code>Backspace</code></td><td>Delete previous character</td></tr>
+                            <tr><td><code>Shift + a-z</code></td><td>Type uppercase letter</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ===== INPUT LIMIT ===== -->
 
     <section class="section-small">
         <div class="container">
@@ -344,10 +730,7 @@ BrackOS&gt;</code></pre>
     </section>
 
 
-    <!-- =========================================================
-         QUICK REFERENCE
-         Keep this table synchronized when adding commands.
-         ========================================================= -->
+    <!-- ===== QUICK REFERENCE: keep in sync when adding commands ===== -->
 
     <section class="section">
         <div class="container">
@@ -362,33 +745,85 @@ BrackOS&gt;</code></pre>
                             <tr>
                                 <th>Command</th>
                                 <th>Action</th>
-                                <th>Output</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr>
                                 <td><code>help</code></td>
-                                <td>List commands</td>
-                                <td>Displays available commands</td>
+                                <td>Displays all available commands.</td>
+                                <td>Implemented</td>
                             </tr>
-
+                            <tr>
+                                <td><code>info</code></td>
+                                <td>Shows system information.</td>
+                                <td>Implemented</td>
+                            </tr>
+                            <tr>
+                                <td><code>cpu</code></td>
+                                <td>Shows CPU information and mode.</td>
+                                <td>Implemented</td>
+                            </tr>
+                            <tr>
+                                <td><code>mem</code></td>
+                                <td>Shows the memory layout.</td>
+                                <td>Implemented</td>
+                            </tr>
+                            <tr>
+                                <td><code>ver</code></td>
+                                <td>Shows kernel version and build.</td>
+                                <td>Implemented</td>
+                            </tr>
+                            <tr>
+                                <td><code>credits</code></td>
+                                <td>Shows project info and credits.</td>
+                                <td>Implemented</td>
+                            </tr>
                             <tr>
                                 <td><code>echo &lt;text&gt;</code></td>
-                                <td>Print text</td>
-                                <td>Displays supplied text</td>
+                                <td>Prints text to the screen.</td>
+                                <td>Implemented</td>
                             </tr>
-
                             <tr>
                                 <td><code>clear</code></td>
-                                <td>Clear screen</td>
-                                <td>Blank screen, cursor at top</td>
+                                <td>Clears the screen and returns the cursor to the top.</td>
+                                <td>Implemented</td>
                             </tr>
-
+                            <tr>
+                                <td><code>time</code></td>
+                                <td>System time (placeholder).</td>
+                                <td>Placeholder</td>
+                            </tr>
+                            <tr>
+                                <td><code>uptime</code></td>
+                                <td>System uptime (placeholder).</td>
+                                <td>Placeholder</td>
+                            </tr>
+                            <tr>
+                                <td><code>date</code></td>
+                                <td>Current date and time (placeholder).</td>
+                                <td>Placeholder</td>
+                            </tr>
+                            <tr>
+                                <td><code>repeat &lt;n&gt; &lt;cmd&gt;</code></td>
+                                <td>Runs a command multiple times.</td>
+                                <td>Implemented</td>
+                            </tr>
+                            <tr>
+                                <td><code>shutdown</code></td>
+                                <td>Halts the CPU.</td>
+                                <td>Implemented</td>
+                            </tr>
+                            <tr>
+                                <td><code>reboot</code></td>
+                                <td>Restarts the system.</td>
+                                <td>Implemented</td>
+                            </tr>
                             <tr>
                                 <td>Unknown</td>
-                                <td>Invalid command</td>
                                 <td>Red error message</td>
+                                <td>Implemented</td>
                             </tr>
                         </tbody>
                     </table>
