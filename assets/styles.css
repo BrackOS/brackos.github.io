@@ -562,7 +562,11 @@ code {
     background: #FFF8E5;
     border-color: #F2DFAD;
 }
-
+.badge-danger {
+    color: #A61B1B;
+    background: #FDECEC;
+    border-color: #F5C2C2;
+}
 
 /* =========================================================
    Code Blocks
