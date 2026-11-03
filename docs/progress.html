@@ -1,46 +1,171 @@
-# What we're working on now and what we plan to do soon
-### Progress is measured on a scale of 1-10, 1 being just started, 5 being working but buggy and unreleasable, and 10 pretty much being "It'll be released within a couple days"
-### Priority level carries no guarantees for release dates or anything of the sort. 1 is the lowest and 5 is the highest.
-### Note that this page will have formatting issues and rough edges, but that is on purpose to make it to where we can update it quickly whenever needed.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>BrackOS Progress</title>
 
+    <meta
+        name="description"
+        content="Current BrackOS development progress, priorities, and future plans."
+    >
 
-#### Native Filesystem named BRKS 
-**Progress: 6**
-**Priority: 2**
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
 
-A native filesystem to give us more than FAT32 can give. 
-Jack is developing a driver for Linux so it will be usable for more than just BrackOS.
-The driver will be released later, probably not when the Filesystem launches.
-This has been released in the source code, but will remain beta until further testing.
-**Primary dev(s)** Jack
+<body>
+<div id="site-header"></div>
 
+<main>
 
-#### Getting a basic GUI working
-**Progress: 2**
-**Priority: 1**
-The title should be self-explanatory. We are limited on time so development is very slow.
-So much of it is just tedious work, so we have drafted a Chinese AI (Local, of course!) to help us do the boring parts.
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="badge">Project Status</span>
 
-**Primary dev(s)** Jack, Jayden, Deepseek-r1:14b :)
+            <h1>BrackOS Progress</h1>
 
-#### **VERY BASIC** Ethernet support
-**Progress: 3**
-**Priority: 4**
-Intel e1000 card support for BrackOS. For now this will just work in Qemu _(Although if you have an e1000 card maybe it could work on real hardware...)_
-For now it is just constant polling on the PCI bus and only the ping command is functional, but... It works!
-Once we get DNS in place, installing apps via the ```bndl``` command will be possible by downloading app manifests from a GitHub repo.
+            <p class="lead">
+                A quick overview of what the team is actively building, what is still
+                experimental, and what is planned for the future.
+            </p>
+        </div>
+    </section>
 
-**Primary dev(s)** Jack
+    <section class="section">
+        <div class="container">
+            <div class="reading-width">
+                <span class="badge">Development Notes</span>
 
+                <h2>What we're working on now.</h2>
 
+                <p>
+                    Progress is measured on a scale of 1-10, where 1 means just started,
+                    5 means working but buggy and unreleasable, and 10 means it is close
+                    to being release-ready.
+                </p>
 
+                <p>
+                    Priority level carries no guarantees for release dates or anything of the sort.
+                    1 is the lowest and 5 is the highest.
+                </p>
 
-## Future work
+                <p class="mb-0">
+                    This page is intentionally rough and easy to update as development changes.
+                </p>
+            </div>
+        </div>
+    </section>
 
-#### USB support
-**Progress: 0**
-**Priority: 0**
-One of the hardest things to do for an OS is to develop drivers, and BrackOS is no exception.
-This might be implemented in the form of basic usb drive and Keyboard/mouse within 2 years, but keep your expectations down
-**Primary dev(s)** None. If you would like to help contribute, you can go to this link
+    <section class="section-small">
+        <div class="container">
+            <div class="grid grid-2">
+
+                <article class="card card-hover">
+                    <span class="badge">Filesystem</span>
+
+                    <h3>Native Filesystem named BRKS</h3>
+
+                    <p><strong>Progress:</strong> 6/10</p>
+                    <p><strong>Priority:</strong> 2/5</p>
+
+                    <p>
+                        A native filesystem to give us more than FAT32 can provide.
+                        Jack is developing a driver for Linux so it will be usable beyond
+                        just BrackOS.
+                    </p>
+
+                    <p>
+                        The driver will be released later, probably not when the filesystem
+                        launches. This code has already been released in the source tree,
+                        but it will remain beta until further testing.
+                    </p>
+
+                    <p class="mb-0"><strong>Primary dev(s):</strong> Jack</p>
+                </article>
+
+                <article class="card card-hover">
+                    <span class="badge">User Interface</span>
+
+                    <h3>Basic GUI</h3>
+
+                    <p><strong>Progress:</strong> 2/10</p>
+                    <p><strong>Priority:</strong> 1/5</p>
+
+                    <p>
+                        The goal is straightforward: get a basic GUI running. Development is
+                        slow because time is limited, and much of the work is repetitive and
+                        tedious.
+                    </p>
+
+                    <p>
+                        The team has drafted a local Chinese AI to help with the boring parts.
+                    </p>
+
+                    <p class="mb-0"><strong>Primary dev(s):</strong> Jack, Jayden, Deepseek-r1:14b :)</p>
+                </article>
+
+                <article class="card card-hover">
+                    <span class="badge badge-warning">Networking</span>
+
+                    <h3>Very basic Ethernet support</h3>
+
+                    <p><strong>Progress:</strong> 3/10</p>
+                    <p><strong>Priority:</strong> 4/5</p>
+
+                    <p>
+                        Intel e1000 support for BrackOS. For now this works in QEMU, though
+                        it may also work on real hardware if the machine has an e1000 card.
+                    </p>
+
+                    <p>
+                        The current implementation is a constant polling loop on the PCI bus,
+                        and only the ping command is functional. But it works.
+                    </p>
+
+                    <p>
+                        Once DNS is in place, installing apps via the <code>bndl</code> command
+                        will be possible by downloading application manifests from a GitHub repo.
+                    </p>
+
+                    <p class="mb-0"><strong>Primary dev(s):</strong> Jack</p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="card reading-width">
+                <span class="badge">Future Work</span>
+
+                <h2>Planned next steps</h2>
+
+                <article>
+                    <h3>USB support</h3>
+
+                    <p><strong>Progress:</strong> 0/10</p>
+                    <p><strong>Priority:</strong> 0/5</p>
+
+                    <p>
+                        One of the hardest parts of building an operating system is writing drivers,
+                        and BrackOS is no exception. USB support may eventually include basic drive
+                        access, keyboard support, and mouse support, but it is likely still years away.
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Primary dev(s):</strong> None. If you would like to help contribute,
+                        please reach out through the project channels.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="/assets/site.js"></script>
+</body>
+</html>
