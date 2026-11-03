@@ -5,13 +5,14 @@
 
 
 
-#### Native Filesystem named BRKS or BRKFS
-**Progress: 4**
-**Priority: 5**
+#### Native Filesystem named BRKS 
+**Progress: 6**
+**Priority: 2**
 
 A native filesystem to give us more than FAT32 can give. 
 Jack is developing a driver for Linux so it will be usable for more than just BrackOS.
-The driver will be released later, probably not when the Filesystem launches
+The driver will be released later, probably not when the Filesystem launches.
+This has been released in the source code, but will remain beta until further testing.
 **Primary dev(s)** Jack
 
 
@@ -22,6 +23,15 @@ The title should be self-explanatory. We are limited on time so development is v
 So much of it is just tedious work, so we have drafted a Chinese AI (Local, of course!) to help us do the boring parts.
 
 **Primary dev(s)** Jack, Jayden, Deepseek-r1:14b :)
+
+#### **VERY BASIC** Ethernet support
+**Progress: 3**
+**Priority: 4**
+Intel e1000 card support for BrackOS. For now this will just work in Qemu _(Although if you have an e1000 card maybe it could work on real hardware...)_
+For now it is just constant polling on the PCI bus and only the ping command is functional, but... It works!
+Once we get DNS in place, installing apps via the ```bndl``` command will be possible by downloading app manifests from a GitHub repo.
+
+**Primary dev(s)** Jack
 
 
 
