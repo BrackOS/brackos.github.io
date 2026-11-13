@@ -46,10 +46,10 @@ Kernel reliability: /src/rtc.c, /src/timer.c, /src/idt.c, and /src/kernel.c add 
 
 Download:
 
-[BrackOS V1.0.0 (.iso)](https://github.com/BrackOS/x64-kernel/releases/download/v1.2.0/BrackOS_v1.2.0.iso)    
+[BrackOS V1.0.0 (.iso)](https://github.com/BrackOS/BrackOS-kernel/releases/download/v1.2.0/BrackOS_v1.2.0.iso)    
     sha256:8b7cd7a9b56867cdaf6ebffc37f49f87e071e6f3b6eaa9a5aa062f7b4115582d
 
-[Source code (.zip) ](https://github.com/BrackOS/x64-kernel/archive/refs/tags/v1.2.0.zip)
+[Source code (.zip) ](https://github.com/BrackOS/BrackOS-kernel/archive/refs/tags/v1.2.0.zip)
 
 ### V1.0.0 
 
@@ -61,7 +61,7 @@ First working version!
 
 Download:
 
-[BrackOS V1.0.0 (.iso)](https://github.com/BrackOS/x64-kernel/releases/download/v1.0.0/BrackOS_V1.0.0_x64.iso)    
+[BrackOS V1.0.0 (.iso)](https://github.com/BrackOS/BrackOS-kernel/releases/download/v1.0.0/BrackOS_V1.0.0_x64.iso)    
     sha256:0296bc160a5ae48b010e1d8dc2e22f31875891b2627f70e5a30823de14f33865
 
-[Source code (.zip) ](https://github.com/BrackOS/x64-kernel/archive/refs/tags/v1.0.0.zip)
+[Source code (.zip) ](https://github.com/BrackOS/BrackOS-kernel/archive/refs/tags/v1.0.0.zip)
