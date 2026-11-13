@@ -10,7 +10,7 @@ _Note: These steps are for Debian. Compatibility is not guaranteed for anything,
 2. Open a bash terminal (or WSL if on Windows) ()
 3. Run ``` sudo apt update && sudo apt upgrade -y && sudo apt install build-essential nasm grub-pc-bin grub-common xorriso mtools qemu-system-x86 dosfstools -y ```
 4. ```cd``` into the directory containing the .iso file downloaded earlier. Usually it is ```cd Downloads```.
-5. Run ```qemu-system-x86_64 -cdrom kernel.iso -m 512```
+5. Run ```qemu-system-x86_64 -cdrom kernel.iso -m 512``` (Replace kernel.iso with the file's name.)
 6. A window should open. Once in GRUB, select the current BrackOS kernel and hit Enter.
 7. You should be in the BrackOS shell! Good luck and happy tinkering!
 
